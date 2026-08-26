@@ -1,6 +1,3 @@
-import { useRef, useEffect } from 'react';
-import { gsap } from '../lib/gsap';
-
 export default function GhostLogo({ className = '' }: { className?: string }) {
   return (
     <div
