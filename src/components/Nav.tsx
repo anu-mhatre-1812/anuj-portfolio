@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Github } from 'lucide-react';
+import { Github, Menu, X } from 'lucide-react';
 import { gsap, ScrollTrigger, scrollToSection } from '../lib/gsap';
 import { GITHUB_URL } from '../lib/theme';
 import { useReducedMotion } from '../hooks/useReducedMotion';
@@ -13,7 +13,9 @@ const LINKS = [
 
 export default function Nav() {
   const rootRef = useRef<HTMLElement>(null);
+  const mobileRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState('home');
+  const [mobileOpen, setMobileOpen] = useState(false);
   const reduced = useReducedMotion();
 
   useEffect(() => {
@@ -46,6 +48,27 @@ export default function Nav() {
     return () => ctx.revert();
   }, []);
 
+  useEffect(() => {
+    if (!mobileRef.current) return;
+    if (mobileOpen) {
+      gsap.set(mobileRef.current, { display: 'flex' });
+      gsap.fromTo(mobileRef.current, { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.25, ease: 'power2.out' });
+    } else {
+      gsap.to(mobileRef.current, {
+        opacity: 0,
+        y: -10,
+        duration: 0.2,
+        ease: 'power2.in',
+        onComplete: () => gsap.set(mobileRef.current, { display: 'none' }),
+      });
+    }
+  }, [mobileOpen]);
+
+  const handleMobileNav = (id: string) => {
+    setMobileOpen(false);
+    scrollToSection(id, reduced);
+  };
+
   return (
     <header ref={rootRef} className="fixed inset-x-0 top-0 z-40 bg-cream/85 backdrop-blur-sm">
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 md:px-8">
@@ -60,7 +83,8 @@ export default function Nav() {
           <img src="/id-photo.jpg" alt="Anuj Mhatre" className="h-full w-full object-cover" />
         </button>
 
-        <div className="flex items-center gap-4 md:gap-7">
+        {/* Desktop nav */}
+        <div className="hidden items-center gap-4 md:flex md:gap-7">
           {LINKS.map((l) => (
             <NavAnchor
               key={l.id}
@@ -87,7 +111,44 @@ export default function Nav() {
             <Github size={16} strokeWidth={2} className="text-ink" />
           </a>
         </div>
+
+        {/* Mobile hamburger */}
+        <button
+          className="flex h-9 w-9 items-center justify-center rounded-full border-[1.5px) border-ink md:hidden"
+          onClick={() => setMobileOpen((o) => !o)}
+          aria-label="Toggle menu"
+        >
+          {mobileOpen ? <X size={18} /> : <Menu size={18} />}
+        </button>
       </nav>
+
+      {/* Mobile menu */}
+      <div
+        ref={mobileRef}
+        className="hidden flex-col gap-1 border-t border-ink/10 bg-cream/95 px-5 pb-4 pt-2 backdrop-blur-sm md:hidden"
+        style={{ display: 'none' }}
+      >
+        {LINKS.map((l) => (
+          <button
+            key={l.id}
+            onClick={() => handleMobileNav(l.id)}
+            className={`w-full py-2.5 text-left font-mono text-sm uppercase tracking-[0.16em] ${
+              active === l.id ? 'font-bold text-ink' : 'text-ink/60'
+            }`}
+          >
+            {l.id === active && <span className="mr-2 text-saffron">▸</span>}
+            {l.label}
+          </button>
+        ))}
+        <a
+          href={GITHUB_URL}
+          target="_blank"
+          rel="noreferrer"
+          className="mt-1 flex items-center gap-2 py-2.5 font-mono text-sm uppercase tracking-[0.16em] text-ink/60"
+        >
+          <Github size={15} /> github ↗
+        </a>
+      </div>
     </header>
   );
 }

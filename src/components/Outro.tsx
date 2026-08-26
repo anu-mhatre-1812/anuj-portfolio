@@ -124,7 +124,7 @@ export default function Outro() {
 
         <div ref={l2Ref} data-speed="1.06" className="mt-6 md:mt-10" onMouseEnter={wave}>
           <p
-            className="outro-l2 cursor-hover whitespace-nowrap font-display text-[6vw] font-bold leading-tight tracking-tight text-saffron md:text-[3.75rem] lg:text-[4.25rem]"
+            className="outro-l2 cursor-hover font-display text-[6vw] font-bold leading-tight tracking-tight text-saffron md:whitespace-nowrap md:text-[3.75rem] lg:text-[4.25rem]"
             data-cursor-label="wave"
           >
             now go and build something!
