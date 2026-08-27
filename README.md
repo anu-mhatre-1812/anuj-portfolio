@@ -1,5 +1,7 @@
 # Anuj Mhatre — Portfolio
 
+[![Live](https://img.shields.io/badge/LIVE-anujmhatre.me-FF6F5E?style=for-the-badge&logo=vercel&logoColor=white)](https://anujmhatre.me)
+
 Single-scroll personal portfolio for **Anuj Mhatre** (@a18-n03) — BTech CSE (AI & ML), CSMU Navi Mumbai.
 React 18 + Vite + TypeScript + Tailwind CSS, animated end-to-end with **GSAP**
 (ScrollTrigger, ScrollSmoother, ScrollToPlugin, SplitText, CustomEase). Live GitHub data with graceful fallback.
