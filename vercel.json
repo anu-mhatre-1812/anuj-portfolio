@@ -1,5 +1,8 @@
 {
   "outputDirectory": "dist",
+  "rewrites": [
+    { "source": "/live", "destination": "/live.html" }
+  ],
   "headers": [
     {
       "source": "/(.*)",
