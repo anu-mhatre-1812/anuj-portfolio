@@ -51,16 +51,10 @@ export default function MiniGPT() {
 
   const speechRef = useRef<SpeechRecognition | null>(null);
   const synthRef = useRef<SpeechSynthesis | null>(null);
+  const listeningRef = useRef(false);
 
   useEffect(() => {
     synthRef.current = window.speechSynthesis ?? null;
-    const SpeechRecognitionAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (SpeechRecognitionAPI) {
-      speechRef.current = new SpeechRecognitionAPI();
-      speechRef.current.continuous = false;
-      speechRef.current.interimResults = false;
-      speechRef.current.lang = 'en-US';
-    }
   }, []);
 
   useEffect(() => {
@@ -97,22 +91,38 @@ export default function MiniGPT() {
   const removeFile = () => setFile(null);
 
   const startVoice = () => {
-    const recog = speechRef.current;
-    if (!recog || loading) return;
+    const SpeechRecognitionAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognitionAPI || loading || listeningRef.current) return;
 
-    setListening(true);
+    const recog = new SpeechRecognitionAPI();
+    recog.continuous = false;
+    recog.interimResults = false;
+    recog.lang = 'en-US';
+
     recog.onresult = (e: SpeechRecognitionEvent) => {
       const transcript = e.results[0][0].transcript;
       setInput(transcript);
+      listeningRef.current = false;
       setListening(false);
     };
-    recog.onerror = () => setListening(false);
-    recog.onend = () => setListening(false);
+    recog.onerror = () => {
+      listeningRef.current = false;
+      setListening(false);
+    };
+    recog.onend = () => {
+      listeningRef.current = false;
+      setListening(false);
+    };
+
+    speechRef.current = recog;
+    listeningRef.current = true;
+    setListening(true);
     recog.start();
   };
 
   const stopVoice = () => {
     speechRef.current?.stop();
+    listeningRef.current = false;
     setListening(false);
   };
 
@@ -289,7 +299,8 @@ export default function MiniGPT() {
         <button
           type="button"
           onClick={listening ? stopVoice : startVoice}
-          className={`cursor-hover shrink-0 rounded-btn border-[1.5px] px-2 py-1.5 font-mono text-[11px] transition-colors ${
+          disabled={loading}
+          className={`cursor-hover shrink-0 rounded-btn border-[1.5px] px-2 py-1.5 font-mono text-[11px] transition-colors disabled:opacity-40 ${
             listening
               ? 'border-coral bg-coral/10 text-coral animate-pulse'
               : 'border-ink/25 text-ink/60 hover:border-saffron hover:text-saffron'
