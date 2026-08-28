@@ -4,6 +4,7 @@ import { gsap } from '../lib/gsap';
 import { useReducedMotion } from '../hooks/useReducedMotion';
 import SplitHeading from '../components/SplitHeading';
 import GhostWord from '../components/GhostWord';
+import MiniGPT from '../components/MiniGPT';
 
 const BUILDS = [
   {
@@ -78,6 +79,10 @@ export default function BuildingSection() {
               </div>
             </article>
           ))}
+        </div>
+
+        <div className="mt-8">
+          <MiniGPT />
         </div>
       </div>
     </section>
