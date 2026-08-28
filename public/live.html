@@ -7,163 +7,36 @@
   <link rel="icon" href="/favicon.jpg" />
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    :root {
-      --cream: #FAF5E9;
-      --ink: #171512;
-      --coral: #FF6B6B;
-      --sky: #4ECDC4;
-      --yolk: #FFE66D;
-      --saffron: #F4A261;
-      --white: #FFFFFF;
-    }
-
-    body {
-      background: var(--cream);
-      color: var(--ink);
-      font-family: 'Courier New', monospace;
-      min-height: 100vh;
-      padding: 2rem;
-    }
-
-    .back {
-      position: fixed;
-      top: 1.5rem;
-      left: 1.5rem;
-      text-decoration: none;
-      color: var(--ink);
-      font-size: 0.85rem;
-      border: 2px solid var(--ink);
-      padding: 0.4rem 0.8rem;
-      background: var(--white);
-      font-family: 'Courier New', monospace;
-      font-weight: 700;
-      z-index: 100;
-    }
+    :root { --cream: #FAF5E9; --ink: #171512; --coral: #FF6B6B; --sky: #4ECDC4; --yolk: #FFE66D; --saffron: #F4A261; --white: #FFFFFF; }
+    body { background: var(--cream); color: var(--ink); font-family: 'Courier New', monospace; min-height: 100vh; padding: 2rem; }
+    .back { position: fixed; top: 1.5rem; left: 1.5rem; text-decoration: none; color: var(--ink); font-size: 0.85rem; border: 2px solid var(--ink); padding: 0.4rem 0.8rem; background: var(--white); font-family: 'Courier New', monospace; font-weight: 700; z-index: 100; }
     .back:hover { background: var(--yolk); }
-
-    h1 {
-      text-align: center;
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      margin: 3rem 0 0.5rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .subtitle {
-      text-align: center;
-      font-size: 0.9rem;
-      color: #888;
-      margin-bottom: 3rem;
-    }
-
-    .grid {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .card {
-      background: var(--white);
-      border: 3px solid var(--ink);
-      padding: 1.5rem;
-      position: relative;
-      transition: transform 0.15s, box-shadow 0.15s;
-    }
-    .card:hover {
-      transform: translate(-3px, -3px);
-      box-shadow: 6px 6px 0 var(--ink);
-    }
-
-    .card-tag {
-      display: inline-block;
-      font-size: 0.65rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      padding: 0.15rem 0.5rem;
-      border: 2px solid var(--ink);
-      margin-bottom: 0.75rem;
-    }
-
-    .card h2 {
-      font-size: 1.1rem;
-      margin-bottom: 0.5rem;
-      text-transform: uppercase;
-    }
-
-    .card p {
-      font-size: 0.8rem;
-      line-height: 1.5;
-      margin-bottom: 1rem;
-      color: #555;
-    }
-
-    .tech {
-      font-size: 0.7rem;
-      color: #999;
-      margin-bottom: 1rem;
-    }
-
-    .links {
-      display: flex;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-    }
-
-    .links a {
-      display: inline-block;
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-decoration: none;
-      padding: 0.35rem 0.7rem;
-      border: 2px solid var(--ink);
-      font-family: 'Courier New', monospace;
-      transition: background 0.1s;
-    }
+    h1 { text-align: center; font-size: clamp(2rem, 5vw, 3.5rem); margin: 3rem 0 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    .subtitle { text-align: center; font-size: 0.9rem; color: #888; margin-bottom: 3rem; }
+    .grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
+    .card { background: var(--white); border: 3px solid var(--ink); padding: 1.5rem; position: relative; transition: transform 0.15s, box-shadow 0.15s; }
+    .card:hover { transform: translate(-3px, -3px); box-shadow: 6px 6px 0 var(--ink); }
+    .card-tag { display: inline-block; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; padding: 0.15rem 0.5rem; border: 2px solid var(--ink); margin-bottom: 0.75rem; }
+    .card h2 { font-size: 1.1rem; margin-bottom: 0.5rem; text-transform: uppercase; }
+    .card p { font-size: 0.8rem; line-height: 1.5; margin-bottom: 1rem; color: #555; }
+    .tech { font-size: 0.7rem; color: #999; margin-bottom: 1rem; }
+    .links { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .links a { display: inline-block; font-size: 0.75rem; font-weight: 700; text-decoration: none; padding: 0.35rem 0.7rem; border: 2px solid var(--ink); font-family: 'Courier New', monospace; transition: background 0.1s; }
     .links a.live { background: var(--sky); color: var(--ink); }
     .links a.live:hover { background: #3dbdb5; }
     .links a.gh { background: var(--white); color: var(--ink); }
     .links a.gh:hover { background: var(--yolk); }
-
-    .cat-label {
-      max-width: 1100px;
-      margin: 2.5rem auto 1rem;
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: var(--coral);
-      border-bottom: 2px solid var(--coral);
-      padding-bottom: 0.3rem;
-    }
-
-    footer {
-      text-align: center;
-      margin: 4rem 0 2rem;
-      font-size: 0.75rem;
-      color: #aaa;
-    }
-
-    @media (max-width: 600px) {
-      body { padding: 1rem; }
-      .grid { grid-template-columns: 1fr; }
-    }
+    .cat-label { max-width: 1100px; margin: 2.5rem auto 1rem; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--coral); border-bottom: 2px solid var(--coral); padding-bottom: 0.3rem; }
+    footer { text-align: center; margin: 4rem 0 2rem; font-size: 0.75rem; color: #aaa; }
+    @media (max-width: 600px) { body { padding: 1rem; } .grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
-
   <a class="back" href="/">← PORTFOLIO</a>
-
   <h1>Live Projects</h1>
   <p class="subtitle">21 repos. Built, shipped, deployed.</p>
-
   <div class="grid">
-
-    <!-- AI / ML -->
     <div class="cat-label">AI &amp; Machine Learning</div>
-
     <div class="card">
       <span class="card-tag" style="background: var(--coral);">AI</span>
       <h2>Mini-GPT</h2>
@@ -174,87 +47,77 @@
         <a class="gh" href="https://github.com/a18-n03/mini-gpt" target="_blank">GitHub</a>
       </div>
     </div>
-
     <div class="card">
       <span class="card-tag" style="background: var(--sky);">ML</span>
       <h2>Customer Churn Predictor</h2>
-      <p>ML model that predicts customer churn with an interactive Streamlit dashboard and visualizations.</p>
-      <div class="tech">Python · Scikit-learn · Streamlit · Pandas</div>
+      <p>Predict customer churn with an interactive dashboard. Enter customer data and get instant predictions.</p>
+      <div class="tech">Python · FastAPI · NumPy</div>
       <div class="links">
-        <a class="live" href="https://customer-churn-predictor-sqaf.onrender.com" target="_blank">Live Demo</a>
+        <a class="live" href="https://customer-churn-predictor-drab.vercel.app" target="_blank">Live Demo</a>
         <a class="gh" href="https://github.com/a18-n03/customer-churn-predictor" target="_blank">GitHub</a>
       </div>
     </div>
-
     <div class="card">
       <span class="card-tag" style="background: var(--sky);">ML</span>
       <h2>AI Resume Analyzer</h2>
-      <p>Parse and score resumes against job descriptions using NLP. Extracts skills, experience, education.</p>
-      <div class="tech">Python · NLP · Streamlit · spaCy</div>
+      <p>Paste resume and job description. Get match score, matching/missing skills, and suggestions.</p>
+      <div class="tech">Python · FastAPI · NLP</div>
       <div class="links">
-        <a class="live" href="https://ai-resume-analyzer-k3sy.onrender.com" target="_blank">Live Demo</a>
+        <a class="live" href="https://ai-resume-analyzer-chi-virid.vercel.app" target="_blank">Live Demo</a>
         <a class="gh" href="https://github.com/a18-n03/ai-resume-analyzer" target="_blank">GitHub</a>
       </div>
     </div>
-
     <div class="card">
       <span class="card-tag" style="background: var(--sky);">ML</span>
       <h2>Recommendation System</h2>
-      <p>Collaborative and content-based recommendation engine for movies/products.</p>
-      <div class="tech">Python · Pandas · Scikit-learn · Flask</div>
+      <p>Content-based and collaborative filtering recommendations. Search, explore, and get personalized picks.</p>
+      <div class="tech">Python · FastAPI · NumPy</div>
       <div class="links">
-        <a class="live" href="https://recommendation-system-b9gt.onrender.com" target="_blank">Live Demo</a>
+        <a class="live" href="https://recommendation-system-xi-peach.vercel.app" target="_blank">Live Demo</a>
         <a class="gh" href="https://github.com/a18-n03/recommendation-system" target="_blank">GitHub</a>
       </div>
     </div>
-
     <div class="card">
       <span class="card-tag" style="background: var(--yolk); color: var(--ink);">RAG</span>
       <h2>RAG Document Assistant</h2>
-      <p>Retrieval-Augmented Generation chatbot that answers questions from uploaded PDFs and docs.</p>
-      <div class="tech">Python · LangChain · FAISS · HuggingFace</div>
+      <p>Upload documents and ask questions. Keyword-based retrieval with source scoring.</p>
+      <div class="tech">Python · FastAPI · Text Search</div>
       <div class="links">
-        <a class="live" href="https://rag-document-assistant-i7kd.onrender.com" target="_blank">Live Demo</a>
+        <a class="live" href="https://rag-document-assistant-coral.vercel.app" target="_blank">Live Demo</a>
         <a class="gh" href="https://github.com/a18-n03/rag-document-assistant" target="_blank">GitHub</a>
       </div>
     </div>
-
     <div class="card">
       <span class="card-tag" style="background: var(--saffron);">DATA</span>
       <h2>AI Data Analyst Agent</h2>
-      <p>Upload CSV/Excel, ask questions in natural language. Auto-generates charts, stats, and insights.</p>
-      <div class="tech">Python · Streamlit · Pandas · Matplotlib</div>
+      <p>Upload CSV or load sample data. Ask questions about your data in natural language.</p>
+      <div class="tech">Python · FastAPI · Pandas</div>
       <div class="links">
-        <a class="live" href="https://ai-data-analyst-agent-fqbr.onrender.com" target="_blank">Live Demo</a>
+        <a class="live" href="https://ai-data-analyst-agent-tau.vercel.app" target="_blank">Live Demo</a>
         <a class="gh" href="https://github.com/a18-n03/ai-data-analyst-agent" target="_blank">GitHub</a>
       </div>
     </div>
-
-    <!-- Full Stack -->
     <div class="cat-label">Full Stack &amp; Web</div>
-
     <div class="card">
       <span class="card-tag" style="background: var(--coral);">API</span>
       <h2>URL Shortener API</h2>
-      <p>FastAPI-based URL shortener with analytics, click tracking, and custom slugs.</p>
-      <div class="tech">Python · FastAPI · SQLite · Pydantic</div>
+      <p>Shorten URLs with custom codes, track clicks, and get analytics.</p>
+      <div class="tech">Python · FastAPI</div>
       <div class="links">
-        <a class="live" href="https://url-shortener-api-10gt.onrender.com" target="_blank">Live Demo</a>
+        <a class="live" href="https://url-shortener-api-roan.vercel.app" target="_blank">Live Demo</a>
         <a class="gh" href="https://github.com/a18-n03/url-shortener-api" target="_blank">GitHub</a>
       </div>
     </div>
-
     <div class="card">
       <span class="card-tag" style="background: var(--sky);">DASH</span>
       <h2>Web Scraping Dashboard</h2>
-      <p>Scrapes websites and displays structured data in a real-time analytics dashboard.</p>
-      <div class="tech">Python · BeautifulSoup · Streamlit · Pandas</div>
+      <p>Enter a URL and CSS selector. Scrape and view structured data in real-time.</p>
+      <div class="tech">Python · FastAPI · BeautifulSoup</div>
       <div class="links">
-        <a class="live" href="https://web-scraping-dashboard-4bwp.onrender.com" target="_blank">Live Demo</a>
+        <a class="live" href="https://web-scraping-dashboard-psi.vercel.app" target="_blank">Live Demo</a>
         <a class="gh" href="https://github.com/a18-n03/web-scraping-dashboard" target="_blank">GitHub</a>
       </div>
     </div>
-
     <div class="card">
       <span class="card-tag" style="background: var(--yolk); color: var(--ink);">SYS</span>
       <h2>Smart File Organizer</h2>
@@ -264,32 +127,27 @@
         <a class="gh" href="https://github.com/a18-n03/smart-file-organizer" target="_blank">GitHub</a>
       </div>
     </div>
-
     <div class="card">
       <span class="card-tag" style="background: var(--saffron);">FIN</span>
       <h2>Personal Expense Tracker</h2>
-      <p>Track expenses, set budgets, visualize spending habits with charts and monthly reports.</p>
-      <div class="tech">Python · Flask · Chart.js · SQLite</div>
+      <p>Add transactions, track budgets, view summaries. In-memory with sample data generation.</p>
+      <div class="tech">Python · FastAPI</div>
       <div class="links">
-        <a class="live" href="https://personal-expense-tracker-wcmi.onrender.com" target="_blank">Live Demo</a>
+        <a class="live" href="https://personal-expense-tracker-sepia-ten.vercel.app" target="_blank">Live Demo</a>
         <a class="gh" href="https://github.com/a18-n03/personal-expense-tracker" target="_blank">GitHub</a>
       </div>
     </div>
-
     <div class="card">
       <span class="card-tag" style="background: var(--coral);">EMAIL</span>
       <h2>Email Automation System</h2>
-      <p>Bulk email sender with templates, scheduling, tracking, and analytics dashboard.</p>
-      <div class="tech">Python · SMTP · Flask · Jinja2</div>
+      <p>Compose emails with templates, upload contacts CSV, preview and send in bulk.</p>
+      <div class="tech">Python · FastAPI</div>
       <div class="links">
-        <a class="live" href="https://email-automation-system-7fky.onrender.com" target="_blank">Live Demo</a>
+        <a class="live" href="https://email-automation-system-pi.vercel.app" target="_blank">Live Demo</a>
         <a class="gh" href="https://github.com/a18-n03/email-automation-system" target="_blank">GitHub</a>
       </div>
     </div>
-
-    <!-- Agents & Automation -->
     <div class="cat-label">Agents &amp; Automation</div>
-
     <div class="card">
       <span class="card-tag" style="background: var(--yolk); color: var(--ink);">AGENT</span>
       <h2>Agent Conductor</h2>
@@ -299,10 +157,7 @@
         <a class="gh" href="https://github.com/a18-n03/agent-conductor" target="_blank">GitHub</a>
       </div>
     </div>
-
-    <!-- Gesture & Vision -->
     <div class="cat-label">Gesture &amp; Vision</div>
-
     <div class="card">
       <span class="card-tag" style="background: var(--sky);">CV</span>
       <h2>Gesture Pad</h2>
@@ -312,20 +167,7 @@
         <a class="gh" href="https://github.com/a18-n03/gesture-pad" target="_blank">GitHub</a>
       </div>
     </div>
-
-    <!-- Cloud & DevOps -->
-    <div class="cat-label">Cloud &amp; DevOps</div>
-
-    <div class="card">
-      <span class="card-tag" style="background: var(--saffron);">CLOUD</span>
-      <h2>AlteraCloud</h2>
-      <p>Cloud infrastructure management tool for deploying and monitoring services.</p>
-      <div class="tech">Python · Docker · AWS · Terraform</div>
-      <div class="links">
-        <a class="gh" href="https://github.com/a18-n03/AlteraCloud" target="_blank">GitHub</a>
-      </div>
-    </div>
-
+    <div class="cat-label">CLI Tools</div>
     <div class="card">
       <span class="card-tag" style="background: var(--coral);">CLI</span>
       <h2>Draco CLI</h2>
@@ -335,7 +177,6 @@
         <a class="gh" href="https://github.com/a18-n03/draco-cli" target="_blank">GitHub</a>
       </div>
     </div>
-
     <div class="card">
       <span class="card-tag" style="background: var(--yolk); color: var(--ink);">CLI</span>
       <h2>Draco R1</h2>
@@ -345,10 +186,7 @@
         <a class="gh" href="https://github.com/a18-n03/draco-r1" target="_blank">GitHub</a>
       </div>
     </div>
-
-    <!-- Data Science -->
     <div class="cat-label">Data Science</div>
-
     <div class="card">
       <span class="card-tag" style="background: var(--sky);">ML</span>
       <h2>Navi Mumbai House Price Prediction</h2>
@@ -358,7 +196,6 @@
         <a class="gh" href="https://github.com/a18-n03/navi-mumbai-house-price-prediction" target="_blank">GitHub</a>
       </div>
     </div>
-
     <div class="card">
       <span class="card-tag" style="background: var(--yolk); color: var(--ink);">RAG</span>
       <h2>DSA Tutor RAG</h2>
@@ -368,7 +205,6 @@
         <a class="gh" href="https://github.com/a18-n03/dsa-tutor-rag" target="_blank">GitHub</a>
       </div>
     </div>
-
     <div class="card">
       <span class="card-tag" style="background: var(--coral);">EDU</span>
       <h2>DSA C++ Notes</h2>
@@ -378,7 +214,6 @@
         <a class="gh" href="https://github.com/a18-n03/DSA-C--Notes" target="_blank">GitHub</a>
       </div>
     </div>
-
     <div class="card">
       <span class="card-tag" style="background: var(--saffron);">ML</span>
       <h2>Training Model</h2>
@@ -388,12 +223,7 @@
         <a class="gh" href="https://github.com/a18-n03/traning-model" target="_blank">GitHub</a>
       </div>
     </div>
-
   </div>
-
-  <footer>
-    Built by Anuj Mhatre &middot; 2026
-  </footer>
-
+  <footer>Built by Anuj Mhatre &middot; 2026</footer>
 </body>
 </html>
