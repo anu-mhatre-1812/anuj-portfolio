@@ -46,12 +46,9 @@ export default function MiniGPT() {
   const [file, setFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
   const [dragOver, setDragOver] = useState(false);
-  const [listening, setListening] = useState(false);
   const [speaking, setSpeaking] = useState<number | null>(null);
 
-  const speechRef = useRef<SpeechRecognition | null>(null);
   const synthRef = useRef<SpeechSynthesis | null>(null);
-  const listeningRef = useRef(false);
 
   useEffect(() => {
     synthRef.current = window.speechSynthesis ?? null;
@@ -89,42 +86,6 @@ export default function MiniGPT() {
   }, [handleFiles]);
 
   const removeFile = () => setFile(null);
-
-  const startVoice = () => {
-    const SpeechRecognitionAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (!SpeechRecognitionAPI || loading || listeningRef.current) return;
-
-    const recog = new SpeechRecognitionAPI();
-    recog.continuous = false;
-    recog.interimResults = false;
-    recog.lang = 'en-US';
-
-    recog.onresult = (e: SpeechRecognitionEvent) => {
-      const transcript = e.results[0][0].transcript;
-      setInput(transcript);
-      listeningRef.current = false;
-      setListening(false);
-    };
-    recog.onerror = () => {
-      listeningRef.current = false;
-      setListening(false);
-    };
-    recog.onend = () => {
-      listeningRef.current = false;
-      setListening(false);
-    };
-
-    speechRef.current = recog;
-    listeningRef.current = true;
-    setListening(true);
-    recog.start();
-  };
-
-  const stopVoice = () => {
-    speechRef.current?.stop();
-    listeningRef.current = false;
-    setListening(false);
-  };
 
   const speakText = (text: string, idx: number) => {
     const synth = synthRef.current;
@@ -296,25 +257,12 @@ export default function MiniGPT() {
           onChange={(e) => handleFiles(e.target.files)}
           className="hidden"
         />
-        <button
-          type="button"
-          onClick={listening ? stopVoice : startVoice}
-          disabled={loading}
-          className={`cursor-hover shrink-0 rounded-btn border-[1.5px] px-2 py-1.5 font-mono text-[11px] transition-colors disabled:opacity-40 ${
-            listening
-              ? 'border-coral bg-coral/10 text-coral animate-pulse'
-              : 'border-ink/25 text-ink/60 hover:border-saffron hover:text-saffron'
-          }`}
-          title={listening ? 'Stop listening' : 'Voice input'}
-        >
-          {listening ? '■' : '🎙'}
-        </button>
         <span className="font-mono text-sm font-bold text-coral">$</span>
         <input
           ref={inputRef}
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder={listening ? 'listening...' : file ? `ask about ${file.name}…` : 'ask about code or upload a file…'}
+          placeholder={file ? `ask about ${file.name}…` : 'ask about code or upload a file…'}
           disabled={loading}
           className="w-full bg-transparent py-1.5 font-mono text-sm text-ink outline-none placeholder:text-ink/40 disabled:opacity-50"
           aria-label="Chat input"
