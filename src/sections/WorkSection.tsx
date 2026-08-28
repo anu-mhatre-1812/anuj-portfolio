@@ -11,6 +11,7 @@ import RepoModal from '../components/RepoModal';
 import PulseBox from '../components/PulseBox';
 import LiveActivity from '../components/LiveActivity';
 import PriceDemo from '../components/PriceDemo';
+import MiniGPT from '../components/MiniGPT';
 import DataBuddy from '../components/DataBuddy';
 import Typewriter from '../components/Typewriter';
 import GhostWord from '../components/GhostWord';
@@ -210,6 +211,8 @@ export default function WorkSection({
             </div>
 
             <PriceDemo />
+
+            <MiniGPT />
 
             {statDefs.length > 0 && (
               <div className="stats-row relative overflow-x-clip">

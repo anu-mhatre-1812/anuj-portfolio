@@ -15,6 +15,25 @@ const WELCOME: Message = {
 
 const ACCEPT = '.py,.js,.ts,.tsx,.jsx,.java,.c,.cpp,.h,.cs,.go,.rs,.rb,.php,.swift,.kt,.html,.css,.scss,.vue,.json,.yaml,.yml,.toml,.xml,.md,.txt,.sql,.sh,.csv,.ipynb,.log,.env,.cfg,.conf';
 
+function parseMarkdown(text: string): string {
+  let html = text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+
+  html = html.replace(/```(\w*)\n([\s\S]*?)```/g, (_m, lang: string, code: string) => {
+    return `<div class="code-block"><div class="code-lang">${lang || 'code'}</div><pre><code>${code.trim()}</code></pre></div>`;
+  });
+
+  html = html.replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>');
+
+  html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+
+  html = html.replace(/\n/g, '<br/>');
+
+  return html;
+}
+
 export default function MiniGPT() {
   const rootRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -27,6 +46,22 @@ export default function MiniGPT() {
   const [file, setFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
   const [dragOver, setDragOver] = useState(false);
+  const [listening, setListening] = useState(false);
+  const [speaking, setSpeaking] = useState<number | null>(null);
+
+  const speechRef = useRef<SpeechRecognition | null>(null);
+  const synthRef = useRef<SpeechSynthesis | null>(null);
+
+  useEffect(() => {
+    synthRef.current = window.speechSynthesis ?? null;
+    const SpeechRecognitionAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (SpeechRecognitionAPI) {
+      speechRef.current = new SpeechRecognitionAPI();
+      speechRef.current.continuous = false;
+      speechRef.current.interimResults = false;
+      speechRef.current.lang = 'en-US';
+    }
+  }, []);
 
   useEffect(() => {
     if (reduced) return;
@@ -60,6 +95,45 @@ export default function MiniGPT() {
   }, [handleFiles]);
 
   const removeFile = () => setFile(null);
+
+  const startVoice = () => {
+    const recog = speechRef.current;
+    if (!recog || loading) return;
+
+    setListening(true);
+    recog.onresult = (e: SpeechRecognitionEvent) => {
+      const transcript = e.results[0][0].transcript;
+      setInput(transcript);
+      setListening(false);
+    };
+    recog.onerror = () => setListening(false);
+    recog.onend = () => setListening(false);
+    recog.start();
+  };
+
+  const stopVoice = () => {
+    speechRef.current?.stop();
+    setListening(false);
+  };
+
+  const speakText = (text: string, idx: number) => {
+    const synth = synthRef.current;
+    if (!synth) return;
+
+    if (speaking === idx) {
+      synth.cancel();
+      setSpeaking(null);
+      return;
+    }
+
+    synth.cancel();
+    const clean = text.replace(/```[\s\S]*?```/g, 'code block').replace(/`[^`]+`/g, 'code').replace(/[*_#]/g, '');
+    const utter = new SpeechSynthesisUtterance(clean);
+    utter.rate = 0.95;
+    utter.onend = () => setSpeaking(null);
+    synth.speak(utter);
+    setSpeaking(idx);
+  };
 
   const send = async () => {
     const q = input.trim();
@@ -121,7 +195,7 @@ export default function MiniGPT() {
         </span>
       </div>
 
-      <div ref={scrollRef} className="h-72 overflow-y-auto px-4 py-4 space-y-3">
+      <div ref={scrollRef} className="h-80 overflow-y-auto px-4 py-4 space-y-3">
         {messages.map((m, i) => (
           <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
             <div
@@ -132,9 +206,18 @@ export default function MiniGPT() {
               }`}
             >
               {m.role === 'mini-gpt' && (
-                <span className="mb-1 block text-[10px] font-bold uppercase tracking-widest text-violet-500">
-                  mini-gpt
-                </span>
+                <div className="mb-1 flex items-center justify-between">
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-violet-500">
+                    mini-gpt
+                  </span>
+                  <button
+                    onClick={() => speakText(m.text, i)}
+                    className="cursor-pointer text-[10px] text-ink/40 hover:text-violet-500"
+                    title={speaking === i ? 'Stop speaking' : 'Read aloud'}
+                  >
+                    {speaking === i ? '■ stop' : '🔊 speak'}
+                  </button>
+                </div>
               )}
               {m.file && (
                 <span className={`mb-1 block rounded px-2 py-0.5 text-[10px] ${
@@ -143,7 +226,14 @@ export default function MiniGPT() {
                   📎 {m.file}
                 </span>
               )}
-              {m.text}
+              {m.role === 'mini-gpt' ? (
+                <div
+                  className="prose-mini"
+                  dangerouslySetInnerHTML={{ __html: parseMarkdown(m.text) }}
+                />
+              ) : (
+                m.text
+              )}
             </div>
           </div>
         ))}
@@ -196,12 +286,24 @@ export default function MiniGPT() {
           onChange={(e) => handleFiles(e.target.files)}
           className="hidden"
         />
+        <button
+          type="button"
+          onClick={listening ? stopVoice : startVoice}
+          className={`cursor-hover shrink-0 rounded-btn border-[1.5px] px-2 py-1.5 font-mono text-[11px] transition-colors ${
+            listening
+              ? 'border-coral bg-coral/10 text-coral animate-pulse'
+              : 'border-ink/25 text-ink/60 hover:border-saffron hover:text-saffron'
+          }`}
+          title={listening ? 'Stop listening' : 'Voice input'}
+        >
+          {listening ? '■' : '🎙'}
+        </button>
         <span className="font-mono text-sm font-bold text-coral">$</span>
         <input
           ref={inputRef}
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder={file ? `ask about ${file.name}…` : 'ask about code or upload a file…'}
+          placeholder={listening ? 'listening...' : file ? `ask about ${file.name}…` : 'ask about code or upload a file…'}
           disabled={loading}
           className="w-full bg-transparent py-1.5 font-mono text-sm text-ink outline-none placeholder:text-ink/40 disabled:opacity-50"
           aria-label="Chat input"
