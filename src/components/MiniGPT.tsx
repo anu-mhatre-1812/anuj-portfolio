@@ -55,9 +55,9 @@ export default function MiniGPT() {
   }, []);
 
   useEffect(() => {
-    if (reduced) return;
+    if (reduced || !rootRef.current) return;
     const ctx = gsap.context(() => {
-      gsap.from('.minigpt-card', {
+      gsap.from(rootRef.current!, {
         y: 20,
         opacity: 0,
         duration: 0.5,
