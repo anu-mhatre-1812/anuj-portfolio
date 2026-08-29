@@ -17,6 +17,7 @@ import BuildingSection from './sections/BuildingSection';
 import WorkSection from './sections/WorkSection';
 import AboutSection from './sections/AboutSection';
 import ContactSection from './sections/ContactSection';
+import CertificatesSection from './sections/CertificatesSection';
 
 export default function App() {
   const reduced = useReducedMotion();
@@ -53,6 +54,7 @@ export default function App() {
             <WorkSection stats={stats} loading={loading} error={error} source={source} refetch={refetch} />
             <Marquee items={['draco', 'dracor1', 'open source', 'frontier labs', 'navi mumbai']} />
             <AboutSection />
+            <CertificatesSection />
             <ContactSection />
             <Outro />
           </main>
