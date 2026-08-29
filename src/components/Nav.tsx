@@ -111,7 +111,7 @@ export default function Nav() {
             <Github size={16} strokeWidth={2} className="text-ink" />
           </a>
           <a
-            href="/certificates.html"
+            href="/certificates"
             className="nav-item cursor-hover flex h-9 w-9 items-center justify-center rounded-full border-[1.5px] border-saffron"
             data-cursor-label="certs"
             aria-label="Certificates"
@@ -163,7 +163,7 @@ export default function Nav() {
           <Github size={15} /> github ↗
         </a>
         <a
-          href="/certificates.html"
+          href="/certificates"
           className="mt-1 flex items-center gap-2 py-2.5 font-mono text-sm uppercase tracking-[0.16em] text-saffron"
         >
           <Award size={15} /> certificates ↗
