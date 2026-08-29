@@ -95,6 +95,19 @@ const PITCH_LINES = [
           >
             get in touch
           </button>
+          <button
+            onClick={() => scrollToSection('certificates', reduced)}
+            className="hero-cta btn-control cursor-hover border-[1.5px] border-saffron px-6 py-3 text-sm text-saffron"
+            data-cursor-label="certs"
+            onMouseEnter={(e) =>
+              gsap.to(e.currentTarget, { backgroundColor: '#F4A261', color: '#171512', duration: 0.12 })
+            }
+            onMouseLeave={(e) =>
+              gsap.to(e.currentTarget, { backgroundColor: 'rgba(0,0,0,0)', color: '#F4A261', duration: 0.18 })
+            }
+          >
+            certificates
+          </button>
         </div>
       </div>
     </section>
