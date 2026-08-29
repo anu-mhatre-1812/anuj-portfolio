@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Github, Menu, X } from 'lucide-react';
+import { Github, Award, Menu, X } from 'lucide-react';
 import { gsap, ScrollTrigger, scrollToSection } from '../lib/gsap';
 import { GITHUB_URL } from '../lib/theme';
 import { useReducedMotion } from '../hooks/useReducedMotion';
@@ -110,6 +110,20 @@ export default function Nav() {
           >
             <Github size={16} strokeWidth={2} className="text-ink" />
           </a>
+          <a
+            href="/certificates.html"
+            className="nav-item cursor-hover flex h-9 w-9 items-center justify-center rounded-full border-[1.5px] border-saffron"
+            data-cursor-label="certs"
+            aria-label="Certificates"
+            onMouseEnter={(e) =>
+              gsap.to(e.currentTarget, { backgroundColor: '#F4A261', duration: 0.12 })
+            }
+            onMouseLeave={(e) =>
+              gsap.to(e.currentTarget, { backgroundColor: '#FAF5E9', duration: 0.15 })
+            }
+          >
+            <Award size={16} strokeWidth={2} className="text-saffron" />
+          </a>
         </div>
 
         {/* Mobile hamburger */}
@@ -147,6 +161,12 @@ export default function Nav() {
           className="mt-1 flex items-center gap-2 py-2.5 font-mono text-sm uppercase tracking-[0.16em] text-ink/60"
         >
           <Github size={15} /> github ↗
+        </a>
+        <a
+          href="/certificates.html"
+          className="mt-1 flex items-center gap-2 py-2.5 font-mono text-sm uppercase tracking-[0.16em] text-saffron"
+        >
+          <Award size={15} /> certificates ↗
         </a>
       </div>
     </header>

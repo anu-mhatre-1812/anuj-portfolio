@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Certificates — Anuj Mhatre</title>
+  <link rel="icon" href="/favicon.jpg" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --cream: #FAF5E9; --ink: #171512; --coral: #FF6B6B; --sky: #4ECDC4; --yolk: #FFE66D; --saffron: #F4A261; --white: #FFFFFF; }
+    body { background: var(--cream); color: var(--ink); font-family: 'Courier New', monospace; min-height: 100vh; padding: 2rem; }
+    .back { position: fixed; top: 1.5rem; left: 1.5rem; text-decoration: none; color: var(--ink); font-size: 0.85rem; border: 2px solid var(--ink); padding: 0.4rem 0.8rem; background: var(--white); font-family: 'Courier New', monospace; font-weight: 700; z-index: 100; }
+    .back:hover { background: var(--yolk); }
+    h1 { text-align: center; font-size: clamp(2rem, 5vw, 3.5rem); margin: 3rem 0 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    .subtitle { text-align: center; font-size: 0.9rem; color: #888; margin-bottom: 3rem; }
+    .grid { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 2rem; }
+    .card { background: var(--white); border: 3px solid var(--ink); padding: 1.5rem; transition: transform 0.15s, box-shadow 0.15s; }
+    .card:hover { transform: translate(-3px, -3px); box-shadow: 6px 6px 0 var(--ink); }
+    .card img { width: 100%; height: auto; border: 2px solid var(--ink/20); }
+    .card h2 { font-size: 1.2rem; text-transform: uppercase; margin-top: 1rem; }
+    .card p { font-size: 0.8rem; color: #888; margin-top: 0.3rem; }
+    .card a { display: inline-block; margin-top: 0.75rem; padding: 0.4rem 0.8rem; border: 2px solid var(--ink); font-size: 0.75rem; font-weight: 700; text-decoration: none; color: var(--ink); background: var(--cream); transition: background 0.1s; }
+    .card a:hover { background: var(--yolk); }
+    footer { text-align: center; margin: 4rem 0 2rem; font-size: 0.75rem; color: #aaa; }
+    @media (max-width: 600px) { body { padding: 1rem; } .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <a class="back" href="/">← PORTFOLIO</a>
+  <h1>Certificates</h1>
+  <p class="subtitle">Professional certifications.</p>
+  <div class="grid">
+    <div class="card">
+      <img src="/ibm-python-cert.png" alt="Introduction to Python - IBM" />
+      <h2>Introduction to Python</h2>
+      <p>IBM · Programming foundations, data structures, OOP</p>
+      <a href="/ibm-python-cert.pdf" target="_blank">View PDF</a>
+    </div>
+    <div class="card">
+      <img src="/ibm-dataviz-cert.png" alt="Data Visualization - IBM" />
+      <h2>Data Visualization</h2>
+      <p>IBM · Charts, dashboards, data storytelling</p>
+      <a href="/ibm-dataviz-cert.pdf" target="_blank">View PDF</a>
+    </div>
+  </div>
+  <footer>Built by Anuj Mhatre · 2026</footer>
+</body>
+</html>
