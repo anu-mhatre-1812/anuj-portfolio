@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Github, Award, Menu, X } from 'lucide-react';
+import { Github, Menu, X } from 'lucide-react';
 import { gsap, ScrollTrigger, scrollToSection } from '../lib/gsap';
 import { GITHUB_URL } from '../lib/theme';
 import { useReducedMotion } from '../hooks/useReducedMotion';
@@ -112,7 +112,7 @@ export default function Nav() {
           </a>
           <a
             href="/certificates"
-            className="nav-item cursor-hover flex h-9 w-9 items-center justify-center rounded-full border-[1.5px] border-saffron"
+            className="nav-item cursor-hover flex h-9 w-9 items-center justify-center rounded-full border-[1.5px] border-saffron overflow-hidden"
             data-cursor-label="certs"
             aria-label="Certificates"
             onMouseEnter={(e) =>
@@ -122,7 +122,7 @@ export default function Nav() {
               gsap.to(e.currentTarget, { backgroundColor: '#FAF5E9', duration: 0.15 })
             }
           >
-            <Award size={16} strokeWidth={2} className="text-saffron" />
+            <img src="/cert-icon.png" alt="certs" className="h-6 w-6 object-contain" />
           </a>
         </div>
 
@@ -166,7 +166,7 @@ export default function Nav() {
           href="/certificates"
           className="mt-1 flex items-center gap-2 py-2.5 font-mono text-sm uppercase tracking-[0.16em] text-saffron"
         >
-          <Award size={15} /> certificates ↗
+          <img src="/cert-icon.png" alt="" className="h-4 w-4 object-contain" /> certificates ↗
         </a>
       </div>
     </header>
