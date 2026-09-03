@@ -12,17 +12,25 @@
     .back { position: fixed; top: 1.5rem; left: 1.5rem; text-decoration: none; color: var(--ink); font-size: 0.85rem; border: 2px solid var(--ink); padding: 0.4rem 0.8rem; background: var(--white); font-family: 'Courier New', monospace; font-weight: 700; z-index: 100; }
     .back:hover { background: var(--yolk); }
     h1 { text-align: center; font-size: clamp(2rem, 5vw, 3.5rem); margin: 3rem 0 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    h2 { text-align: center; font-size: clamp(1.2rem, 3vw, 1.8rem); margin: 3rem 0 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
     .subtitle { text-align: center; font-size: 0.9rem; color: #888; margin-bottom: 3rem; }
     .grid { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 2rem; }
+    .badge-grid { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.5rem; }
     .card { background: var(--white); border: 3px solid var(--ink); padding: 1.5rem; transition: transform 0.15s, box-shadow 0.15s; }
     .card:hover { transform: translate(-3px, -3px); box-shadow: 6px 6px 0 var(--ink); }
-    .card img { width: 100%; height: auto; border: 2px solid var(--ink/20); }
-    .card h2 { font-size: 1.2rem; text-transform: uppercase; margin-top: 1rem; }
+    .card img { width: 100%; height: auto; border: 2px solid rgba(0,0,0,0.1); }
+    .card h3 { font-size: 1.2rem; text-transform: uppercase; margin-top: 1rem; }
     .card p { font-size: 0.8rem; color: #888; margin-top: 0.3rem; }
     .card a { display: inline-block; margin-top: 0.75rem; padding: 0.4rem 0.8rem; border: 2px solid var(--ink); font-size: 0.75rem; font-weight: 700; text-decoration: none; color: var(--ink); background: var(--cream); transition: background 0.1s; }
     .card a:hover { background: var(--yolk); }
+    .badge-card { background: var(--white); border: 3px solid var(--ink); padding: 1rem; text-align: center; transition: transform 0.15s, box-shadow 0.15s; }
+    .badge-card:hover { transform: translate(-3px, -3px); box-shadow: 6px 6px 0 var(--ink); }
+    .badge-card img { width: 80px; height: 80px; object-fit: contain; margin: 0 auto; display: block; }
+    .badge-card h3 { font-size: 0.85rem; text-transform: uppercase; margin-top: 0.75rem; }
+    .badge-card p { font-size: 0.7rem; color: #888; margin-top: 0.2rem; }
+    .divider { max-width: 900px; margin: 4rem auto 0; border: none; border-top: 2px solid rgba(0,0,0,0.1); }
     footer { text-align: center; margin: 4rem 0 2rem; font-size: 0.75rem; color: #aaa; }
-    @media (max-width: 600px) { body { padding: 1rem; } .grid { grid-template-columns: 1fr; } }
+    @media (max-width: 600px) { body { padding: 1rem; } .grid { grid-template-columns: 1fr; } .badge-grid { grid-template-columns: repeat(2, 1fr); } }
   </style>
 </head>
 <body>
@@ -32,17 +40,160 @@
   <div class="grid">
     <div class="card">
       <img src="/ibm-python-cert.png" alt="Introduction to Python - IBM" />
-      <h2>Introduction to Python</h2>
+      <h3>Introduction to Python</h3>
       <p>IBM · Programming foundations, data structures, OOP</p>
       <a href="/ibm-python-cert.pdf" target="_blank">View PDF</a>
     </div>
     <div class="card">
       <img src="/ibm-dataviz-cert.png" alt="Data Visualization - IBM" />
-      <h2>Data Visualization</h2>
+      <h3>Data Visualization</h3>
       <p>IBM · Charts, dashboards, data storytelling</p>
       <a href="/ibm-dataviz-cert.pdf" target="_blank">View PDF</a>
     </div>
+    <div class="card">
+      <img src="/claude-cert.png" alt="Claude Certificate" />
+      <h3>Claude</h3>
+      <p>Anthropic · AI assistant certification</p>
+      <a href="/claude-cert.pdf" target="_blank">View PDF</a>
+    </div>
+    <div class="card">
+      <img src="/claude-code-101-cert.png" alt="Claude Code 101 Certificate" />
+      <h3>Claude Code 101</h3>
+      <p>Anthropic · AI coding assistant certification</p>
+      <a href="/claude-code-101-cert.pdf" target="_blank">View PDF</a>
+    </div>
+    <div class="card">
+      <img src="/claude-platform-101-cert.png" alt="Claude Platform 101 Certificate" />
+      <h3>Claude Platform 101</h3>
+      <p>Anthropic · AI platform certification</p>
+      <a href="/claude-platform-101-cert.pdf" target="_blank">View PDF</a>
+    </div>
+    <div class="card">
+      <img src="/claude-cowork-cert.png" alt="Introduction to Claude Cowork Certificate" />
+      <h3>Introduction to Claude Cowork</h3>
+      <p>Anthropic · AI collaboration certification</p>
+      <a href="/claude-cowork-cert.pdf" target="_blank">View PDF</a>
+    </div>
+    <div class="card">
+      <img src="/claude-api-cert.png" alt="Building With Claude API Certificate" />
+      <h3>Building With Claude API</h3>
+      <p>Anthropic · API development certification</p>
+      <a href="/claude-api-cert.pdf" target="_blank">View PDF</a>
+    </div>
+    <div class="card">
+      <img src="/claude-ai-fluency-cert.png" alt="Claude AI Fluency - Frameworks and Foundations Certificate" />
+      <h3>Claude AI Fluency — Frameworks & Foundations</h3>
+      <p>Anthropic · AI fluency certification</p>
+      <a href="/claude-ai-fluency-cert.pdf" target="_blank">View PDF</a>
+    </div>
+    <div class="card">
+      <img src="/claude-code-in-action-cert.png" alt="Claude Code in Action Certificate" />
+      <h3>Claude Code in Action</h3>
+      <p>Anthropic · AI coding certification</p>
+      <a href="/claude-code-in-action-cert.pdf" target="_blank">View PDF</a>
+    </div>
+    <div class="card">
+      <img src="/mcp-intro-cert.png" alt="Introduction to Model Context Protocol Certificate" />
+      <h3>Introduction to Model Context Protocol</h3>
+      <p>Anthropic · MCP certification</p>
+      <a href="/mcp-intro-cert.pdf" target="_blank">View PDF</a>
+    </div>
+    <div class="card">
+      <img src="/mcp-advanced-cert.png" alt="Model Context Protocol - Advanced Topics Certificate" />
+      <h3>Model Context Protocol — Advanced Topics</h3>
+      <p>Anthropic · MCP advanced certification</p>
+      <a href="/mcp-advanced-cert.pdf" target="_blank">View PDF</a>
+    </div>
+    <div class="card">
+      <img src="/ai-fluency-students-cert.png" alt="AI Fluency For Students Certificate" />
+      <h3>AI Fluency for Students</h3>
+      <p>Anthropic · AI fluency certification</p>
+      <a href="/ai-fluency-students-cert.pdf" target="_blank">View PDF</a>
+    </div>
+    <div class="card">
+      <img src="/ai-fluency-educators-cert.png" alt="AI Fluency For Educators Certificate" />
+      <h3>AI Fluency for Educators</h3>
+      <p>Anthropic · AI fluency certification</p>
+      <a href="/ai-fluency-educators-cert.pdf" target="_blank">View PDF</a>
+    </div>
+    <div class="card">
+      <img src="/ibm-prompt-badge.png" alt="Craft Precise Prompts for AI Models Certificate" />
+      <h3>Craft Precise Prompts for AI Models</h3>
+      <p>IBM · AI prompt engineering certification</p>
+      <a href="/ibm-prompt-badge.pdf" target="_blank">View PDF</a>
+    </div>
+    <div class="card">
+      <img src="/ibm-data-science-cert.png" alt="Data Science Foundations Level 1 Certificate" />
+      <h3>Data Science Foundations Level 1</h3>
+      <p>IBM · Data science certification</p>
+      <a href="/ibm-data-science-cert.pdf" target="_blank">View PDF</a>
+    </div>
+    <div class="card">
+      <img src="/ibm-data-science-101-cert.png" alt="Data Science 101 Certificate" />
+      <h3>Data Science 101</h3>
+      <p>IBM · Data science certification</p>
+      <a href="/ibm-data-science-101-cert.pdf" target="_blank">View PDF</a>
+    </div>
+    <div class="card">
+      <img src="/ibm-genai-essentials-cert.png" alt="Generative AI Essentials Using LLMs to Work with Data Certificate" />
+      <h3>Generative AI Essentials — Using LLMs to Work with Data</h3>
+      <p>IBM · AI certification</p>
+      <a href="/ibm-genai-essentials-cert.pdf" target="_blank">View PDF</a>
+    </div>
   </div>
+
+  <hr class="divider" />
+
+  <h2>Badges</h2>
+  <p class="subtitle">Earned through hands-on practice.</p>
+  <div style="text-align:center; margin-bottom:2rem;">
+    <img src="/badge-logo.png" alt="Badge" style="height:60px; width:auto;" />
+  </div>
+  <div class="badge-grid">
+    <div class="badge-card">
+      <img src="/ibm-prompt-badge.png" alt="Craft Precise Prompts for AI Models Badge" />
+      <h3>Craft Precise Prompts for AI Models</h3>
+      <p>IBM</p>
+      <a href="/ibm-prompt-badge.pdf" target="_blank">View PDF</a>
+    </div>
+    <div class="badge-card">
+      <img src="/ibm-data-science-badge.png" alt="Data Science Foundations Level 1 Badge" />
+      <h3>Data Science Foundations Level 1</h3>
+      <p>IBM</p>
+      <a href="/ibm-data-science-cert.pdf" target="_blank">View PDF</a>
+    </div>
+    <div class="badge-card">
+      <img src="/ibm-llm-sticker.png" alt="Introduction to Large Language Models Sticker" />
+      <h3>Introduction to LLMs</h3>
+      <p>IBM</p>
+    </div>
+    <div class="badge-card">
+      <img src="/ibm-granite-sticker.png" alt="Summarizing Data Using IBM Granite Module Sticker" />
+      <h3>Summarizing Data with Granite</h3>
+      <p>IBM</p>
+    </div>
+    <div class="badge-card">
+      <img src="/ibm-granite-classify-sticker.png" alt="Classifying Data Using IBM Granite Module Sticker" />
+      <h3>Classifying Data with Granite</h3>
+      <p>IBM</p>
+    </div>
+    <div class="badge-card">
+      <img src="/ibm-genai-essentials-badge.png" alt="Generative AI Essentials Using LLMs to Work with Data Badge" />
+      <h3>Generative AI Essentials</h3>
+      <p>IBM</p>
+    </div>
+    <div class="badge-card">
+      <img src="/google-intro-genai-badge.png" alt="Introduction to Generative AI Badge" />
+      <h3>Introduction to Generative AI</h3>
+      <p>Google Cloud</p>
+    </div>
+    <div class="badge-card">
+      <img src="/google-intro-llm-badge.png" alt="Introduction to Large Language Models Badge" />
+      <h3>Introduction to LLMs</h3>
+      <p>Google Cloud</p>
+    </div>
+  </div>
+
   <footer>Built by Anuj Mhatre · 2026</footer>
 </body>
 </html>

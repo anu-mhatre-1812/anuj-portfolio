@@ -17,6 +17,7 @@ import BuildingSection from './sections/BuildingSection';
 import WorkSection from './sections/WorkSection';
 import AboutSection from './sections/AboutSection';
 import ContactSection from './sections/ContactSection';
+import Lanyard from './components/Lanyard';
 
 export default function App() {
   const reduced = useReducedMotion();
@@ -53,6 +54,10 @@ export default function App() {
             <WorkSection stats={stats} loading={loading} error={error} source={source} refetch={refetch} />
             <Marquee items={['draco', 'dracor1', 'open source', 'frontier labs', 'navi mumbai']} />
             <AboutSection />
+            <section className="relative flex flex-col items-center justify-center px-5 py-10">
+              <h2 className="font-mono text-xs uppercase tracking-[0.3em] text-ink/50 mb-4">My ID Card</h2>
+              <Lanyard />
+            </section>
             <ContactSection />
             <Outro />
           </main>

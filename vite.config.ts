@@ -149,5 +149,13 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
   return {
     plugins: [react(), githubApiDevServer(env.GITHUB_TOKEN, env.HF_TOKEN)],
+    build: {
+      rollupOptions: {
+        input: {
+          main: 'index.html',
+          badges: 'badges.html',
+        },
+      },
+    },
   };
 });

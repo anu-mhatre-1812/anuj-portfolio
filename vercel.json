@@ -2,7 +2,8 @@
   "outputDirectory": "dist",
   "rewrites": [
     { "source": "/live", "destination": "/live.html" },
-    { "source": "/certificates", "destination": "/certificates.html" }
+    { "source": "/certificates", "destination": "/certificates.html" },
+    { "source": "/badges", "destination": "/badges.html" }
   ],
   "headers": [
     {

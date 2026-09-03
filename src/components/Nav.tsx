@@ -124,6 +124,20 @@ export default function Nav() {
           >
             <img src="/cert-icon.png" alt="certs" className="h-6 w-6 object-contain" />
           </a>
+          <a
+            href="/badges"
+            className="nav-item cursor-hover flex h-9 w-9 items-center justify-center rounded-full border-[1.5px] border-coral overflow-hidden"
+            data-cursor-label="badges"
+            aria-label="Badges"
+            onMouseEnter={(e) =>
+              gsap.to(e.currentTarget, { backgroundColor: '#FF6B6B', duration: 0.12 })
+            }
+            onMouseLeave={(e) =>
+              gsap.to(e.currentTarget, { backgroundColor: '#FAF5E9', duration: 0.15 })
+            }
+          >
+            <span className="text-sm">🏅</span>
+          </a>
         </div>
 
         {/* Mobile hamburger */}
@@ -167,6 +181,12 @@ export default function Nav() {
           className="mt-1 flex items-center gap-2 py-2.5 font-mono text-sm uppercase tracking-[0.16em] text-saffron"
         >
           <img src="/cert-icon.png" alt="" className="h-4 w-4 object-contain" /> certificates ↗
+        </a>
+        <a
+          href="/badges"
+          className="mt-1 flex items-center gap-2 py-2.5 font-mono text-sm uppercase tracking-[0.16em] text-coral"
+        >
+          🏅 badges ↗
         </a>
       </div>
     </header>
