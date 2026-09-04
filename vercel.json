@@ -3,7 +3,8 @@
   "rewrites": [
     { "source": "/live", "destination": "/live.html" },
     { "source": "/certificates", "destination": "/certificates.html" },
-    { "source": "/badges", "destination": "/badges.html" }
+    { "source": "/badges", "destination": "/badges.html" },
+    { "source": "/resume", "destination": "/resume.html" }
   ],
   "headers": [
     {

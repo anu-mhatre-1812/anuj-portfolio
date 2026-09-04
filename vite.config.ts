@@ -154,6 +154,7 @@ export default defineConfig(({ mode }) => {
         input: {
           main: 'index.html',
           badges: 'badges.html',
+          resume: 'resume.html',
         },
       },
     },
