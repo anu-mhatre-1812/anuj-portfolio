@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anuj Mhatre — Resume</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  @page { size: A4; margin: 0; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: #fff;
+    color: #1a1a1a;
+    line-height: 1.5;
+    font-size: 10.5pt;
+  }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto;
+    padding: 28px 32px;
+  }
+
+  /* HEADER */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 2.5px solid #1a1a1a;
+  }
+  .header-left h1 {
+    font-size: 26pt;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+    color: #1a1a1a;
+  }
+  .header-left .tagline {
+    font-size: 10pt;
+    color: #555;
+    margin-top: 4px;
+    font-weight: 500;
+  }
+  .header-right {
+    text-align: right;
+    font-size: 9pt;
+    color: #444;
+    line-height: 1.7;
+  }
+  .header-right a {
+    color: #1a1a1a;
+    text-decoration: none;
+  }
+  .header-right .phone { font-weight: 600; }
+
+  /* SECTIONS */
+  .section { margin-bottom: 14px; }
+  .section-title {
+    font-size: 9pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #1a1a1a;
+    border-bottom: 1.5px solid #d0d0d0;
+    padding-bottom: 4px;
+    margin-bottom: 8px;
+  }
+
+  /* SUMMARY */
+  .summary {
+    font-size: 10pt;
+    color: #333;
+    line-height: 1.55;
+  }
+
+  /* EXPERIENCE / PROJECTS */
+  .entry { margin-bottom: 10px; }
+  .entry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 2px;
+  }
+  .entry-title {
+    font-size: 10.5pt;
+    font-weight: 700;
+    color: #1a1a1a;
+  }
+  .entry-sub {
+    font-size: 9pt;
+    color: #666;
+    font-weight: 500;
+  }
+  .entry-date {
+    font-size: 9pt;
+    color: #888;
+    font-family: 'JetBrains Mono', monospace;
+    white-space: nowrap;
+  }
+  .entry-tech {
+    font-size: 8.5pt;
+    color: #777;
+    font-family: 'JetBrains Mono', monospace;
+    margin-top: 1px;
+    margin-bottom: 3px;
+  }
+  .entry ul {
+    margin-left: 16px;
+    margin-top: 3px;
+  }
+  .entry li {
+    font-size: 10pt;
+    color: #333;
+    margin-bottom: 2px;
+    line-height: 1.45;
+  }
+  .entry li strong { color: #1a1a1a; }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 4px 12px;
+    font-size: 10pt;
+  }
+  .skills-label {
+    font-weight: 600;
+    color: #1a1a1a;
+  }
+  .skills-value {
+    color: #444;
+  }
+
+  /* EDUCATION */
+  .edu-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  /* CERTS */
+  .cert-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px 20px;
+    font-size: 9.5pt;
+  }
+  .cert-item { color: #333; }
+  .cert-item .cert-org { color: #888; font-size: 8.5pt; }
+
+  /* LINKS */
+  .links {
+    display: flex;
+    gap: 20px;
+    font-size: 9pt;
+    color: #555;
+  }
+  .links a { color: #1a1a1a; text-decoration: none; font-weight: 500; }
+
+  @media print {
+    body { background: white; }
+    .page { padding: 24px 28px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <h1>Anuj Mhatre</h1>
+      <div class="tagline">AI Engineer &middot; Full-Stack Builder &middot; Open Source Contributor</div>
+    </div>
+    <div class="header-right">
+      <div class="phone">+91 84509 85594</div>
+      <div><a href="mailto:anujmhatre125@gmail.com">anujmhatre125@gmail.com</a></div>
+      <div><a href="https://github.com/a18-n03">github.com/a18-n03</a></div>
+      <div><a href="https://linkedin.com/in/anuj-mhatre-031807ma">linkedin.com/in/anuj-mhatre-031807ma</a></div>
+      <div><a href="https://anujmhatre.me">anujmhatre.me</a></div>
+    </div>
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="section">
+    <div class="section-title">Summary</div>
+    <div class="summary">
+      Second-year BTech CSE (AI & ML) student with hands-on experience building and deploying end-to-end AI systems — from fine-tuning 7B-parameter LLMs with LoRA on consumer GPUs to shipping full-stack products used by real users. Strong open-source presence with 570+ GitHub contributions, 29 public repositories, and 25+ professional certifications across AI/ML, cloud, and software engineering. Seeking to contribute to <strong>Anthropic's mission of building reliable, interpretable AI systems</strong> through the Campus program.
+    </div>
+  </div>
+
+  <!-- EDUCATION -->
+  <div class="section">
+    <div class="section-title">Education</div>
+    <div class="entry">
+      <div class="entry-header">
+        <div>
+          <span class="entry-title">BTech in Computer Science (AI &amp; ML)</span>
+          <span class="entry-sub">&mdash; Chhatrapati Shivaji Maharaj University, Navi Mumbai</span>
+        </div>
+        <span class="entry-date">2024 &ndash; 2028</span>
+      </div>
+      <div class="entry-tech">Relevant Coursework: Machine Learning, Deep Learning, Data Structures &amp; Algorithms, Database Systems, Operating Systems</div>
+    </div>
+  </div>
+
+  <!-- KEY PROJECTS -->
+  <div class="section">
+    <div class="section-title">Key Projects</div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">Draco &mdash; Terminal-First AI Coding Agent</span>
+        <span class="entry-date">2026</span>
+      </div>
+      <div class="entry-tech">JavaScript &middot; Node.js &middot; OpenCode Zen API</div>
+      <ul>
+        <li>Built a zero-login CLI coding agent that plans, edits, runs, and verifies code without leaving the terminal.</li>
+        <li>Integrated with LLM APIs for autonomous multi-file editing with automatic error recovery.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">DracoR1 &mdash; Fine-Tuned Personal AI Assistant</span>
+        <span class="entry-date">2026</span>
+      </div>
+      <div class="entry-tech">DeepSeek-R1 7B &middot; LoRA &middot; QLoRA &middot; Google Colab T4 &middot; PyTorch</div>
+      <ul>
+        <li>Fine-tuned DeepSeek-R1-Distill-Qwen-7B using LoRA on a free Colab T4 GPU for multi-domain reasoning.</li>
+        <li>Trained model handles math, code, English, and Marathi with improved instruction-following accuracy.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">Navi Mumbai Housing Price Predictor</span>
+        <span class="entry-date">2025</span>
+      </div>
+      <div class="entry-tech">Python &middot; scikit-learn &middot; Pandas &middot; Streamlit &middot; FastAPI &middot; Docker</div>
+      <ul>
+        <li>End-to-end ML pipeline: feature engineering, KMeans geo-clusters, tuned RF/HGB + stacking ensemble achieving <strong>R&sup2; = 0.85</strong>.</li>
+        <li>Deployed with Streamlit dashboard, REST API, Docker containerization, and CI/CD pipeline.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">AlteraCloud &mdash; Brutalist Cloud Storage Platform</span>
+        <span class="entry-date">2025</span>
+      </div>
+      <div class="entry-tech">React &middot; TypeScript &middot; Supabase &middot; Electron</div>
+      <ul>
+        <li>Full-stack file management platform with share links, AI-powered document summaries, and admin panel.</li>
+        <li>Cross-platform desktop app built with Electron, real-time sync via Supabase.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">Mini-GPT &mdash; AI Coding Assistant</span>
+        <span class="entry-date">2026</span>
+      </div>
+      <div class="entry-tech">Qwen2.5-Coder-7B &middot; FastAPI &middot; React &middot; HuggingFace &middot; Vercel</div>
+      <ul>
+        <li>Deployed a Qwen2.5-Coder-7B based coding assistant with chat UI, file upload, code analysis, and voice output.</li>
+        <li>Backend on Render, Vercel proxy for API routing, production-ready deployment.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="section">
+    <div class="section-title">Technical Skills</div>
+    <div class="skills-grid">
+      <span class="skills-label">Languages</span>
+      <span class="skills-value">Python, JavaScript, TypeScript, C++, SQL, HTML/CSS</span>
+      <span class="skills-label">AI / ML</span>
+      <span class="skills-value">PyTorch, HuggingFace Transformers, LoRA/QLoRA, LangChain, scikit-learn, Pandas, NumPy</span>
+      <span class="skills-label">Full-Stack</span>
+      <span class="skills-value">React, Node.js, Tailwind CSS, Supabase, PostgreSQL, Firebase, REST APIs</span>
+      <span class="skills-label">DevOps</span>
+      <span class="skills-value">Git, GitHub, Docker, Linux, Vercel, Render, Google Colab, CI/CD</span>
+      <span class="skills-label">Other</span>
+      <span class="skills-value">DSA (C++), System Design, Prompt Engineering, Fine-tuning, RAG</span>
+    </div>
+  </div>
+
+  <!-- CERTIFICATIONS -->
+  <div class="section">
+    <div class="section-title">Certifications (25+)</div>
+    <div class="cert-grid">
+      <div class="cert-item">Claude Code in Action <span class="cert-org">&mdash; Anthropic</span></div>
+      <div class="cert-item">Building with Claude API <span class="cert-org">&mdash; Anthropic</span></div>
+      <div class="cert-item">Claude AI Fluency <span class="cert-org">&mdash; Anthropic</span></div>
+      <div class="cert-item">Introduction to Model Context Protocol <span class="cert-org">&mdash; Anthropic</span></div>
+      <div class="cert-item">Model Context Protocol: Advanced Topics <span class="cert-org">&mdash; Anthropic</span></div>
+      <div class="cert-item">Claude Platform 101 <span class="cert-org">&mdash; Anthropic</span></div>
+      <div class="cert-item">Introduction to Claude Cowork <span class="cert-org">&mdash; Anthropic</span></div>
+      <div class="cert-item">Generative AI Essentials <span class="cert-org">&mdash; IBM</span></div>
+      <div class="cert-item">Data Science Foundations Level 1 <span class="cert-org">&mdash; IBM</span></div>
+      <div class="cert-item">AI Fundamentals <span class="cert-org">&mdash; IBM</span></div>
+      <div class="cert-item">Introduction to Generative AI <span class="cert-org">&mdash; Google Cloud</span></div>
+      <div class="cert-item">Introduction to Large Language Models <span class="cert-org">&mdash; Google Cloud</span></div>
+    </div>
+  </div>
+
+  <!-- OPEN SOURCE -->
+  <div class="section">
+    <div class="section-title">Open Source &amp; Community</div>
+    <ul>
+      <li><strong>570+ GitHub contributions</strong> across 29 public repositories spanning AI/ML, full-stack, and DevOps.</li>
+      <li>Created issues and PRs in repos including <strong>vercel/next.js</strong>, <strong>microsoft/vscode</strong>, <strong>golang/go</strong>, <strong>kubernetes/kubernetes</strong>, and <strong>django/django</strong>.</li>
+      <li>Unlocked GitHub achievements: <strong>YOLO</strong>, <strong>Quickdraw</strong>, <strong>First Issue</strong>, <strong>Pair Extraordinaire</strong>.</li>
+      <li>Built and deployed 13+ live projects with production infrastructure.</li>
+    </ul>
+  </div>
+
+</div>
+</body>
+</html>
