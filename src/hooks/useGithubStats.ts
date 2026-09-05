@@ -144,9 +144,10 @@ async function fetchViaProxy(): Promise<GithubUserStats> {
 }
 
 async function fetchViaPublicApi(): Promise<GithubUserStats> {
+  const headers: Record<string, string> = { Accept: 'application/vnd.github.v3+json' };
   const [uR, rR] = await Promise.all([
-    fetch('https://api.github.com/users/a18-n03'),
-    fetch('https://api.github.com/users/a18-n03/repos?per_page=100&sort=updated&type=owner'),
+    fetch('https://api.github.com/users/a18-n03', { headers }),
+    fetch('https://api.github.com/users/a18-n03/repos?per_page=100&sort=updated&type=owner', { headers }),
   ]);
   if (!uR.ok || !rR.ok) throw new Error('GitHub public API unavailable');
   const user = (await uR.json()) as RestUser;
