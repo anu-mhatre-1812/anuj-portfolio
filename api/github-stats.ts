@@ -86,23 +86,29 @@ export default async function handler(_req: unknown, res: ResLike) {
   // REST fallback
   try {
     const headers = { Authorization: `Bearer ${token}`, Accept: 'application/vnd.github.v3+json' };
-    const [uR, rR, cR] = await Promise.all([
+    const [uR, rR, cR, fR, fgR] = await Promise.all([
       fetch(`https://api.github.com/users/${LOGIN}`, { headers }),
       fetch(`https://api.github.com/users/${LOGIN}/repos?per_page=100&sort=updated&type=owner`, { headers }),
       fetch(`https://github.com/users/${LOGIN}/contributions`, { headers: { Accept: 'text/html' } }),
+      fetch(`https://api.github.com/users/${LOGIN}/followers?per_page=100`, { headers }),
+      fetch(`https://api.github.com/users/${LOGIN}/following?per_page=100`, { headers }),
     ]);
 
     if (!uR.ok || !rR.ok) throw new Error('GitHub REST API unavailable');
 
-    const user = await uR.json() as { followers: number; following: number; public_repos: number };
+    const user = await uR.json() as { public_repos: number };
     const reposRaw = await rR.json() as Array<{
       name: string; description: string | null; html_url: string;
       stargazers_count: number; forks_count: number; updated_at: string;
-      language: string | null;
+      language: string | null; fork: boolean;
     }>;
 
+    // Use followers/following endpoints (more accurate than /users endpoint)
+    const followersList = fR.ok ? await fR.json() as Array<{ login: string }> : [];
+    const followingList = fgR.ok ? await fgR.json() as Array<{ login: string }> : [];
+
     const repos = reposRaw
-      .filter(r => !r.name.startsWith('a18-n03'))
+      .filter(r => !r.name.startsWith('a18-n03') && !r.fork)
       .map(r => ({
         name: r.name, description: r.description, url: r.html_url,
         stargazerCount: r.stargazers_count, forkCount: r.forks_count,
@@ -121,8 +127,8 @@ export default async function handler(_req: unknown, res: ResLike) {
     const data = {
       data: {
         user: {
-          followers: { totalCount: user.followers },
-          following: { totalCount: user.following },
+          followers: { totalCount: followersList.length },
+          following: { totalCount: followingList.length },
           repositories: { totalCount: user.public_repos, nodes: repos },
           pinnedItems: { nodes: [] },
           contributionsCollection: {
