@@ -18,6 +18,7 @@ import WorkSection from './sections/WorkSection';
 import AboutSection from './sections/AboutSection';
 import ContactSection from './sections/ContactSection';
 import Lanyard from './components/Lanyard';
+import Keyboard from './components/Keyboard';
 
 export default function App() {
   const reduced = useReducedMotion();
@@ -41,6 +42,7 @@ export default function App() {
   return (
     <>
       <Preloader />
+      <Keyboard />
       <FallingParticles />
       <ProgressBar />
       <Cursor />
