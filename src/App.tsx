@@ -18,7 +18,6 @@ import WorkSection from './sections/WorkSection';
 import AboutSection from './sections/AboutSection';
 import ContactSection from './sections/ContactSection';
 import Lanyard from './components/Lanyard';
-import SphereModel from './components/SphereModel';
 
 export default function App() {
   const reduced = useReducedMotion();
@@ -57,14 +56,7 @@ export default function App() {
             <AboutSection />
             <section className="relative flex flex-col items-center justify-center px-5 py-10">
               <h2 className="font-mono text-xs uppercase tracking-[0.3em] text-ink/50 mb-4">My ID Card</h2>
-              <div className="flex flex-col lg:flex-row items-center justify-center gap-8 w-full max-w-6xl">
-                <div className="flex-1 w-full">
-                  <Lanyard />
-                </div>
-                <div className="flex-1 w-full">
-                  <SphereModel />
-                </div>
-              </div>
+              <Lanyard />
             </section>
             <ContactSection />
             <Outro />
