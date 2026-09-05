@@ -32,4 +32,5 @@ export const badges: Badge[] = [
   { id: 23, title: 'IBM Granite Classify',       description: 'Classifying Data with Granite — IBM.',                          dateEarned: '2026', imageUrl: '/badges/ibm-granite-classify-sticker.png' },
   { id: 24, title: 'IBM LLM Sticker',            description: 'Introduction to LLMs Sticker — IBM.',                           dateEarned: '2026', imageUrl: '/badges/ibm-llm-sticker.png' },
   { id: 25, title: 'AI Fundamentals',            description: 'AI Fundamentals: Foundations for Understanding AI.',             dateEarned: '2026', imageUrl: '/badges/ai-fundamentals-cert.png' },
+  { id: 26, title: 'Case Block World',           description: 'Case Block World — AI & Problem Solving.',                    dateEarned: '2026', imageUrl: '/badges/case-block-world-cert.png' },
 ];
