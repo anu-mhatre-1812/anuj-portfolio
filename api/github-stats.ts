@@ -98,7 +98,7 @@ export default async function handler(_req: unknown, res: ResLike) {
     // Fall through to REST
   }
 
-  // REST fallback
+  // REST fallback (wrapped in try-catch to handle rate limits)
   try {
     const headers = { Authorization: `Bearer ${token}`, Accept: 'application/vnd.github.v3+json' };
     const [rR, fR, fgR, eR] = await Promise.all([
@@ -108,7 +108,16 @@ export default async function handler(_req: unknown, res: ResLike) {
       fetch(`https://api.github.com/users/${LOGIN}/events?per_page=100`, { headers }),
     ]);
 
-    if (!rR.ok) throw new Error('GitHub REST API unavailable');
+    if (!rR.ok) {
+      // If REST is rate limited but we have stale cache, return it
+      if (cachedData) {
+        res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=120');
+        res.setHeader('X-Cache', 'STALE');
+        res.status(200).json(cachedData);
+        return;
+      }
+      throw new Error('GitHub REST API unavailable');
+    }
 
     const reposRaw = await rR.json() as Array<{
       name: string; description: string | null; html_url: string;
@@ -159,6 +168,13 @@ export default async function handler(_req: unknown, res: ResLike) {
     res.setHeader('Cache-Control', 's-maxage=180, stale-while-revalidate=300');
     res.status(200).json(data);
   } catch (err) {
+    // If we have cached data, return it even if stale
+    if (cachedData) {
+      res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=120');
+      res.setHeader('X-Cache', 'STALE');
+      res.status(200).json(cachedData);
+      return;
+    }
     res.setHeader('Cache-Control', 'no-store');
     res.status(500).json({ errors: [{ message: err instanceof Error ? err.message : 'upstream failure' }] });
   }
