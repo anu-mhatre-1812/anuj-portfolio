@@ -29,7 +29,7 @@ export default function DataBuddy() {
     <div
       ref={ref}
       aria-hidden
-      className="pointer-events-none absolute bottom-0 left-0 hidden w-52 lg:block xl:w-60"
+      className="pointer-events-none absolute bottom-8 left-8 hidden w-48 lg:block xl:w-56"
     >
       <img
         src="/anuj-character.png"

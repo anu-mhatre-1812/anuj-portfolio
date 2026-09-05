@@ -134,8 +134,9 @@ export default function WorkSection({
     : [];
 
   return (
-    <section id="work" ref={rootRef} className="relative overflow-hidden py-24 md:py-32">
+    <section id="work" ref={rootRef} className="relative py-24 md:py-32">
       <GhostLogo className="absolute left-1/2 top-1/2 h-[550px] w-[550px] -translate-x-1/2 -translate-y-1/2" />
+      <DataBuddy />
       <div className="absolute right-[3vw] top-[6vw]">
         <GhostWord text="data" speed="0.88" />
       </div>
@@ -203,8 +204,7 @@ export default function WorkSection({
               />
             )}
 
-            <div className="relative overflow-visible">
-              <DataBuddy />
+            <div className="relative">
               <div className="lg:pl-52 xl:pl-56">
                 <LiveActivity />
               </div>
