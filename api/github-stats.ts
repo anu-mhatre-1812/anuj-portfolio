@@ -86,9 +86,10 @@ export default async function handler(_req: unknown, res: ResLike) {
   // REST fallback
   try {
     const headers = { Authorization: `Bearer ${token}`, Accept: 'application/vnd.github.v3+json' };
-    const [uR, rR] = await Promise.all([
+    const [uR, rR, cR] = await Promise.all([
       fetch(`https://api.github.com/users/${LOGIN}`, { headers }),
       fetch(`https://api.github.com/users/${LOGIN}/repos?per_page=100&sort=updated&type=owner`, { headers }),
+      fetch(`https://github.com/users/${LOGIN}/contributions`, { headers: { Accept: 'text/html' } }),
     ]);
 
     if (!uR.ok || !rR.ok) throw new Error('GitHub REST API unavailable');
@@ -109,6 +110,14 @@ export default async function handler(_req: unknown, res: ResLike) {
         primaryLanguage: r.language ? { name: r.language, color: null } : null,
       }));
 
+    // Scrape contributions from HTML
+    let totalContributions = 0;
+    if (cR.ok) {
+      const html = await cR.text();
+      const contribMatch = html.match(/(\d+)\s+contributions?\s+in the last year/);
+      if (contribMatch) totalContributions = parseInt(contribMatch[1], 10);
+    }
+
     const data = {
       data: {
         user: {
@@ -119,7 +128,7 @@ export default async function handler(_req: unknown, res: ResLike) {
           contributionsCollection: {
             totalCommitContributions: 0,
             totalPullRequestContributions: 0,
-            contributionCalendar: { totalContributions: 0, weeks: [] },
+            contributionCalendar: { totalContributions, weeks: [] },
           },
         },
       },
