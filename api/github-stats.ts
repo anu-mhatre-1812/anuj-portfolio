@@ -125,13 +125,20 @@ export default async function handler(_req: unknown, res: ResLike) {
       if (contribMatch) totalContributions = parseInt(contribMatch[1], 10);
     }
 
-    // Count commits and PRs from events
+    // Count commits and PRs from events (fetch 3 pages for more history)
     let totalCommits = 0;
     let totalPRs = 0;
     if (eR.ok) {
-      const events = await eR.json() as Array<{ type: string; payload: { action?: string } }>;
-      for (const e of events) {
-        if (e.type === 'PushEvent') totalCommits++;
+      const eventsPage1 = await eR.json() as Array<{ type: string; payload: { action?: string; size?: number } }>;
+      const [eR2, eR3] = await Promise.all([
+        fetch(`https://api.github.com/users/${LOGIN}/events?per_page=100&page=2`, { headers }),
+        fetch(`https://api.github.com/users/${LOGIN}/events?per_page=100&page=3`, { headers }),
+      ]);
+      const eventsPage2 = eR2.ok ? await eR2.json() as Array<{ type: string; payload: { action?: string; size?: number } }> : [];
+      const eventsPage3 = eR3.ok ? await eR3.json() as Array<{ type: string; payload: { action?: string; size?: number } }> : [];
+      const allEvents = [...eventsPage1, ...eventsPage2, ...eventsPage3];
+      for (const e of allEvents) {
+        if (e.type === 'PushEvent') totalCommits += (e.payload.size ?? 1);
         if (e.type === 'PullRequestEvent' && e.payload.action === 'opened') totalPRs++;
       }
     }
