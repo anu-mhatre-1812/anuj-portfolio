@@ -118,7 +118,7 @@ export default function Keyboard() {
       <Spline
         className="w-full h-full"
         onLoad={(app: Application) => setSplineApp(app)}
-        scene="/assets/skills-keyboard.spline"
+        scene="/assets/skills-keyboard.splinecode"
       />
     </Suspense>
   );
