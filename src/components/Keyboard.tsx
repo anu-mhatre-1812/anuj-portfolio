@@ -111,6 +111,16 @@ export default function Keyboard() {
   useEffect(() => {
     if (!splineApp) return;
     handleSplineInteractions();
+
+    // Make all keycaps visible (they start hidden in the Spline scene)
+    const allObjects = splineApp.getAllObjects();
+    const keycaps = allObjects.filter((obj: any) => obj.name === "keycap");
+    keycaps.forEach((keycap: any) => {
+      keycap.visible = true;
+    });
+
+    console.log("All objects:", allObjects.map((o: any) => o.name));
+    console.log("Keycaps found:", keycaps.length);
   }, [splineApp]);
 
   return (
