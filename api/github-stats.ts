@@ -72,7 +72,7 @@ export default async function handler(_req: unknown, res: ResLike) {
       body: JSON.stringify({ query: QUERY, variables: { login: LOGIN } }),
     });
 
-    const data = await r.json();
+    const data = await r.json() as { errors?: Array<{ message: string }>; data?: unknown };
     if (r.ok && !data.errors) {
       res.setHeader('Cache-Control', 's-maxage=180, stale-while-revalidate=300');
       res.status(200).json(data);
