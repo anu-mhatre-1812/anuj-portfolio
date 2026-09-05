@@ -203,7 +203,7 @@ export default function WorkSection({
               />
             )}
 
-            <div className="relative pt-48">
+            <div className="relative overflow-visible">
               <DataBuddy />
               <div className="lg:pl-52 xl:pl-56">
                 <LiveActivity />
