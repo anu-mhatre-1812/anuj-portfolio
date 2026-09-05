@@ -86,12 +86,13 @@ export default async function handler(_req: unknown, res: ResLike) {
   // REST fallback
   try {
     const headers = { Authorization: `Bearer ${token}`, Accept: 'application/vnd.github.v3+json' };
-    const [uR, rR, cR, fR, fgR] = await Promise.all([
+    const [uR, rR, cR, fR, fgR, eR] = await Promise.all([
       fetch(`https://api.github.com/users/${LOGIN}`, { headers }),
       fetch(`https://api.github.com/users/${LOGIN}/repos?per_page=100&sort=updated&type=owner`, { headers }),
       fetch(`https://github.com/users/${LOGIN}/contributions`, { headers: { Accept: 'text/html' } }),
       fetch(`https://api.github.com/users/${LOGIN}/followers?per_page=100`, { headers }),
       fetch(`https://api.github.com/users/${LOGIN}/following?per_page=100`, { headers }),
+      fetch(`https://api.github.com/users/${LOGIN}/events?per_page=100`, { headers }),
     ]);
 
     if (!uR.ok || !rR.ok) throw new Error('GitHub REST API unavailable');
@@ -124,6 +125,17 @@ export default async function handler(_req: unknown, res: ResLike) {
       if (contribMatch) totalContributions = parseInt(contribMatch[1], 10);
     }
 
+    // Count commits and PRs from events
+    let totalCommits = 0;
+    let totalPRs = 0;
+    if (eR.ok) {
+      const events = await eR.json() as Array<{ type: string; payload: { action?: string } }>;
+      for (const e of events) {
+        if (e.type === 'PushEvent') totalCommits++;
+        if (e.type === 'PullRequestEvent' && e.payload.action === 'opened') totalPRs++;
+      }
+    }
+
     const data = {
       data: {
         user: {
@@ -132,8 +144,8 @@ export default async function handler(_req: unknown, res: ResLike) {
           repositories: { totalCount: user.public_repos, nodes: repos },
           pinnedItems: { nodes: [] },
           contributionsCollection: {
-            totalCommitContributions: 0,
-            totalPullRequestContributions: 0,
+            totalCommitContributions: totalCommits,
+            totalPullRequestContributions: totalPRs,
             contributionCalendar: { totalContributions, weeks: [] },
           },
         },
