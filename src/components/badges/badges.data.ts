@@ -33,4 +33,5 @@ export const badges: Badge[] = [
   { id: 24, title: 'IBM LLM Sticker',            description: 'Introduction to LLMs Sticker — IBM.',                           dateEarned: '2026', imageUrl: '/badges/ibm-llm-sticker.png' },
   { id: 25, title: 'AI Fundamentals',            description: 'AI Fundamentals: Foundations for Understanding AI.',             dateEarned: '2026', imageUrl: '/badges/ai-fundamentals-cert.png' },
   { id: 26, title: 'Case Block World',           description: 'Case Block World — AI & Problem Solving.',                    dateEarned: '2026', imageUrl: '/badges/case-block-world-cert.png' },
+  { id: 27, title: 'SQL and Relational Databases 101', description: 'SQL and Relational Databases 101 — IBM Skills Network.', dateEarned: '2026', imageUrl: '/ibm-sql-cert.png' },
 ];
