@@ -48,6 +48,11 @@ const QUERY = `
     }
   }`;
 
+// In-memory cache (survives across warm invocations)
+let cachedData: unknown = null;
+let cacheTime = 0;
+const CACHE_TTL = 300_000; // 5 minutes
+
 interface ResLike {
   setHeader(key: string, value: string): void;
   status(code: number): { json(body: unknown): void };
@@ -58,6 +63,14 @@ export default async function handler(_req: unknown, res: ResLike) {
   if (!token) {
     res.setHeader('Cache-Control', 'no-store');
     res.status(500).json({ errors: [{ message: 'GITHUB_TOKEN not set' }] });
+    return;
+  }
+
+  // Return cached data if available
+  if (cachedData && Date.now() - cacheTime < CACHE_TTL) {
+    res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=120');
+    res.setHeader('X-Cache', 'HIT');
+    res.status(200).json(cachedData);
     return;
   }
 
@@ -74,6 +87,8 @@ export default async function handler(_req: unknown, res: ResLike) {
 
     const data = await r.json() as { errors?: Array<{ message: string }>; data?: unknown };
     if (r.ok && !data.errors) {
+      cachedData = data;
+      cacheTime = Date.now();
       res.setHeader('Cache-Control', 's-maxage=180, stale-while-revalidate=300');
       res.status(200).json(data);
       return;
@@ -139,6 +154,8 @@ export default async function handler(_req: unknown, res: ResLike) {
       },
     };
 
+    cachedData = data;
+    cacheTime = Date.now();
     res.setHeader('Cache-Control', 's-maxage=180, stale-while-revalidate=300');
     res.status(200).json(data);
   } catch (err) {
