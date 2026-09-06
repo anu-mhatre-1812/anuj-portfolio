@@ -101,7 +101,8 @@ export default function Preloader() {
 
           <h1
             ref={nameRef}
-            className="font-display font-bold uppercase leading-none tracking-tight text-[13vw] md:text-[7rem]"
+            className="font-bold uppercase leading-none tracking-tight text-[13vw] md:text-[7rem]"
+            style={{ fontFamily: "'Drift Brush', cursive" }}
           >
             <span ref={gARef} className="inline-block text-cream">
               Anuj
