@@ -51,7 +51,7 @@ const QUERY = `
 // In-memory cache (survives across warm invocations)
 let cachedData: unknown = null;
 let cacheTime = 0;
-const CACHE_TTL = 300_000; // 5 minutes
+const CACHE_TTL = 1_800_000; // 30 minutes
 
 interface ResLike {
   setHeader(key: string, value: string): void;
