@@ -142,7 +142,7 @@ export default function Nav() {
 
         {/* Mobile hamburger */}
         <button
-          className="flex h-9 w-9 items-center justify-center rounded-full border-[1.5px) border-ink md:hidden"
+          className="flex h-9 w-9 items-center justify-center rounded-full border-[1.5px] border-ink md:hidden"
           onClick={() => setMobileOpen((o) => !o)}
           aria-label="Toggle menu"
         >
@@ -154,7 +154,6 @@ export default function Nav() {
       <div
         ref={mobileRef}
         className="hidden flex-col gap-1 border-t border-ink/10 bg-cream/95 px-5 pb-4 pt-2 backdrop-blur-sm md:hidden"
-        style={{ display: 'none' }}
       >
         {LINKS.map((l) => (
           <button

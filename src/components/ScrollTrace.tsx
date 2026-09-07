@@ -110,10 +110,10 @@ export default function ScrollTrace() {
     });
   }, [updateScroll]);
 
+  const resizeTimerRef = useRef<ReturnType<typeof setTimeout>>();
   const onResize = useCallback(() => {
-    let timer: ReturnType<typeof setTimeout> | undefined;
-    clearTimeout(timer);
-    timer = setTimeout(buildPath, 150);
+    clearTimeout(resizeTimerRef.current);
+    resizeTimerRef.current = setTimeout(buildPath, 150);
   }, [buildPath]);
 
   useEffect(() => {

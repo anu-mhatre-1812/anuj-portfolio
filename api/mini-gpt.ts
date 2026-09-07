@@ -17,6 +17,12 @@ export default async function handler(req: unknown, res: ResLike) {
   const prompt = r.body?.prompt || "What are you?";
   const file = r.body?.file;
 
+  if (file && file.content && file.content.length > 1_048_576) {
+    res.setHeader("Content-Type", "application/json");
+    res.status(413).json({ error: "file content exceeds 1MB limit" });
+    return;
+  }
+
   try {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 60000);

@@ -15,10 +15,10 @@ function Band({ maxSpeed = 50, minSpeed = 0 }: { maxSpeed?: number; minSpeed?: n
   const j2 = useRef<any>(null)
   const j3 = useRef<any>(null)
   const card = useRef<any>(null)
-  const vec = new THREE.Vector3()
-  const ang = new THREE.Vector3()
-  const rot = new THREE.Vector3()
-  const dir = new THREE.Vector3()
+  const vec = useRef(new THREE.Vector3()).current
+  const ang = useRef(new THREE.Vector3()).current
+  const rot = useRef(new THREE.Vector3()).current
+  const dir = useRef(new THREE.Vector3()).current
   const segmentProps = { type: 'dynamic' as const, canSleep: true, colliders: false as any, angularDamping: 4, linearDamping: 4 }
   const { nodes, materials } = useGLTF('/card.glb')
   const texture = useTexture('/lanyard.png')

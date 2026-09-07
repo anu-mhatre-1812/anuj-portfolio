@@ -12,7 +12,9 @@ const PITCH_LINES = [
   'Training models. Shipping products.',
   'Building across AI/ML, full-stack and dev tools —',
   'aiming straight for frontier AI labs.',
-];export default function HeroSection({
+];
+
+export default function HeroSection({
   stats,
   loading,
 }: {

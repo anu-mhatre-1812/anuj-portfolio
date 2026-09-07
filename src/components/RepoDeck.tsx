@@ -277,7 +277,7 @@ export default function RepoDeck({
         className={`relative mx-auto max-w-3xl ${interactive ? '' : 'cursor-pointer select-none'}`}
         style={{
           height: interactive ? gs.h : undefined,
-          minHeight: !interactive ? CARD_H + 20 : undefined,
+          minHeight: !interactive ? CARD_H + 200 : undefined,
         }}
         role={interactive ? undefined : 'button'}
         tabIndex={interactive ? -1 : 0}

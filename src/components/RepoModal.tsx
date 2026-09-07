@@ -287,7 +287,13 @@ function sanitizeHtml(html: string): string {
   return html
     .replace(/<script[\s\S]*?<\/script>/gi, '')
     .replace(/<iframe[\s\S]*?<\/iframe>/gi, '')
+    .replace(/<object[\s\S]*?<\/object>/gi, '')
+    .replace(/<embed[\s\S]*?>/gi, '')
+    .replace(/<applet[\s\S]*?<\/applet>/gi, '')
     .replace(/ on\w+="[^"]*"/gi, '')
     .replace(/ on\w+='[^']*'/gi, '')
-    .replace(/javascript:/gi, '');
+    .replace(/ on\w+=`[^`]*`/gi, '')
+    .replace(/javascript:/gi, '')
+    .replace(/data:text\/html/gi, '')
+    .replace(/data:application\/x-/gi, '');
 }

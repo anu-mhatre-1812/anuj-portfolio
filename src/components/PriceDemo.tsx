@@ -9,6 +9,19 @@ const NODES = [
 
 const PREDICT_URL = '/api/predict';
 
+function LoadingDots({ reduced }: { reduced: boolean }) {
+  const ref = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    if (reduced || !ref.current) return;
+    const el = ref.current;
+    const tween = gsap.to(el, { opacity: 0, repeat: -1, yoyo: true, duration: 0.5, ease: 'sine.inOut' });
+    return () => { tween.kill(); };
+  }, [reduced]);
+
+  return <span ref={ref}>…</span>;
+}
+
 export default function PriceDemo() {
   const rootRef = useRef<HTMLDivElement>(null);
   const resultRef = useRef<HTMLParagraphElement>(null);
@@ -180,7 +193,7 @@ export default function PriceDemo() {
 
       {loading && (
         <p className="mt-4 animate-none font-mono text-xs text-ink/60">
-          ▸ waking the render instance<span ref={(el) => { if (el && !reduced) gsap.to(el, { opacity: 0, repeat: -1, yoyo: true, duration: 0.5, ease: 'sine.inOut' }); }}>…</span>
+          ▸ waking the render instance<LoadingDots reduced={reduced} />
         </p>
       )}
 

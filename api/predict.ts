@@ -13,10 +13,15 @@ export default async function handler(req: unknown, res: ResLike) {
     return;
   }
   try {
+    const bodyStr = JSON.stringify(r.body);
+    if (bodyStr.length > 10240) {
+      res.status(413).json({ error: 'payload too large' });
+      return;
+    }
     const upstream = await fetch(`${RENDER_API}/predict`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(r.body),
+      body: bodyStr,
     });
     const data = await upstream.json();
     res.setHeader('Cache-Control', 'no-store');
