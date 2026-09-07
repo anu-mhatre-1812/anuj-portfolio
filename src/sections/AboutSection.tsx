@@ -48,7 +48,7 @@ export default function AboutSection() {
   }, [reduced]);
 
   return (
-    <section id="about" ref={rootRef} className="relative overflow-hidden py-24 md:py-32">
+    <section id="about" ref={rootRef} className="relative overflow-hidden py-24 md:py-32" data-trace-node="right" data-trace-index="3">
       <GhostLogo className="absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2" />
       <div className="absolute left-[-2vw] top-[4vw]">
         <GhostWord text="story" speed="1" />

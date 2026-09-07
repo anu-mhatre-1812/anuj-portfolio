@@ -196,3 +196,66 @@
   font-weight: 700;
   color: #171512;
 }
+
+/* ---------- Scroll Trace ---------- */
+.scroll-trace-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+  z-index: 3;
+}
+.scroll-trace-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+.scroll-trace-bg {
+  fill: none;
+  stroke: rgba(23, 21, 18, 0.12);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+.scroll-trace-fg {
+  fill: none;
+  stroke: var(--color-coral);
+  stroke-width: 2;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 6px rgba(255, 111, 94, 0.45));
+  transition: stroke-dashoffset 80ms linear;
+}
+.scroll-trace-node {
+  fill: var(--color-cream);
+  stroke: rgba(23, 21, 18, 0.2);
+  stroke-width: 2;
+  transition: stroke 300ms ease, fill 300ms ease, filter 300ms ease;
+}
+.scroll-trace-node.is-lit {
+  stroke: var(--color-coral);
+  fill: var(--color-coral);
+  filter: drop-shadow(0 0 6px rgba(255, 111, 94, 0.7));
+}
+.scroll-trace-hud {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 50;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: rgba(23, 21, 18, 0.4);
+  background: rgba(250, 245, 233, 0.8);
+  border: 1px solid rgba(23, 21, 18, 0.1);
+  padding: 5px 10px;
+  border-radius: 4px;
+  backdrop-filter: blur(4px);
+  pointer-events: none;
+}
+.scroll-trace-hud span {
+  color: var(--color-coral);
+  font-weight: 600;
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-trace-fg { transition: none; }
+}

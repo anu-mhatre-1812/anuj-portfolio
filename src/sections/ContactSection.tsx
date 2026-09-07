@@ -72,7 +72,7 @@ export default function ContactSection() {
   }, [reduced]);
 
   return (
-    <section id="contact" ref={rootRef} className="relative overflow-hidden py-24 md:py-32">
+    <section id="contact" ref={rootRef} className="relative overflow-hidden py-24 md:py-32" data-trace-node="left" data-trace-index="4">
       <BackdropShapes />
       <GhostLogo className="absolute left-1/2 top-1/2 h-[480px] w-[480px] -translate-x-1/2 -translate-y-1/2" />
       <div className="absolute left-[3vw] bottom-[4vw]">

@@ -42,7 +42,7 @@ export default function BuildingSection() {
   }, [reduced]);
 
   return (
-    <section ref={rootRef} className="relative overflow-hidden py-24 md:py-32">
+    <section ref={rootRef} className="relative overflow-hidden py-24 md:py-32" data-trace-node="right" data-trace-index="1">
       <div className="absolute right-[3vw] top-[4vw]">
         <GhostWord text="build" speed="0.85" />
       </div>
