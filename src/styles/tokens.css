@@ -4,10 +4,27 @@
 
 @font-face {
   font-family: 'Drift Brush';
-  src: url('/fonts/DriftBrush-Regular.ttf') format('truetype');
+  src: url('/fonts/DriftBrush-Regular.woff2') format('woff2'),
+       url('/fonts/DriftBrush-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
+}
+
+@font-face {
+  font-family: 'Kateru';
+  src: url('/fonts/kateru/kateru-regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: optional;
+}
+
+@font-face {
+  font-family: 'Kateru';
+  src: url('/fonts/kateru/kateru-italic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+  font-display: optional;
 }
 
 :root {
