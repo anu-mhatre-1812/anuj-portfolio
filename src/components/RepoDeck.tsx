@@ -233,7 +233,7 @@ export default function RepoDeck({
 
       <div
         ref={wrapRef}
-        className={`relative grid gap-5 md:grid-cols-2 lg:grid-cols-3 ${interactive ? '' : 'cursor-pointer select-none'}`}
+        className={`relative mx-auto max-w-3xl grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 ${interactive ? '' : 'select-none'}`}
         role={interactive ? undefined : 'button'}
         tabIndex={interactive ? -1 : 0}
         aria-label={interactive ? undefined : 'Fan out the stacked repository cards'}
