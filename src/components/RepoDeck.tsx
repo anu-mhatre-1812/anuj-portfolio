@@ -82,10 +82,10 @@ export default function RepoDeck({
       const tl = gsap.timeline({ onComplete: () => finalize() });
 
       tl.to(m.cards, {
-        x: (i: number) => -nat[i].x + gsap.utils.random(-7, 7),
-        y: (i: number) => -nat[i].y + gsap.utils.random(-5, 5),
-        rotation: () => gsap.utils.random(-11, 11),
-        scale: 0.85,
+        x: (i: number) => -nat[i].x + gsap.utils.random(-3, 3),
+        y: (i: number) => -nat[i].y + gsap.utils.random(-3, 3),
+        rotation: () => gsap.utils.random(-4, 4),
+        scale: 0.92,
         duration: 0.5 * k,
         ease: 'power3.inOut',
         stagger: { each: 0.01 * k, from: 'start' },
@@ -158,10 +158,10 @@ export default function RepoDeck({
       if (!m || !natRef.current) return;
       m.cards.forEach((c, i) => {
         gsap.set(c, {
-          x: -natRef.current![i].x + gsap.utils.random(-7, 7),
-          y: -natRef.current![i].y + gsap.utils.random(-5, 5),
-          rotation: gsap.utils.random(-11, 11),
-          scale: 0.85,
+          x: -natRef.current![i].x + gsap.utils.random(-3, 3),
+          y: -natRef.current![i].y + gsap.utils.random(-3, 3),
+          rotation: gsap.utils.random(-4, 4),
+          scale: 0.92,
           opacity: 1,
           zIndex: i + 1,
         });
