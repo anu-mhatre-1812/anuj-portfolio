@@ -77,7 +77,7 @@ export default function RepoDeck({
       const originals = m.cards.filter((el) => !el.hasAttribute('data-clone'));
       const clones = m.cards.filter((el) => el.hasAttribute('data-clone'));
 
-      const R = Math.min(Math.max(m.W * 0.2, 90), 90);
+      const R = Math.min(Math.max(m.W * 0.35, 140), 280);
 
       const tl = gsap.timeline({ onComplete: () => finalize() });
 
@@ -98,6 +98,7 @@ export default function RepoDeck({
           y: (i: number) => Math.sin((i / T) * Math.PI * 2 - Math.PI / 2) * R * 0.92 - nat[i].y,
           rotation: (i: number) => ((i / T) * Math.PI * 2 * 180) / Math.PI + 90,
           scale: 0.78,
+          zIndex: (i: number) => T - i,
           duration: 0.95 * k,
           ease: 'power3.inOut',
           stagger: { each: 0.03 * k, from: 'start' },

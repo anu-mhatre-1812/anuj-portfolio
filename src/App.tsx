@@ -18,7 +18,6 @@ import WorkSection from './sections/WorkSection';
 import AboutSection from './sections/AboutSection';
 import ContactSection from './sections/ContactSection';
 import Lanyard from './components/Lanyard';
-import ScrollTrace from './components/ScrollTrace';
 
 export default function App() {
   const reduced = useReducedMotion();
@@ -46,7 +45,6 @@ export default function App() {
       <ProgressBar />
       <Cursor />
       <Nav />
-      <ScrollTrace />
       <div id="smooth-wrapper" className="relative z-[2]">
         <div id="smooth-content">
           <main>

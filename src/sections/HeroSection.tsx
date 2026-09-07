@@ -46,7 +46,7 @@ const PITCH_LINES = [
   }, [reduced]);
 
   return (
-    <section id="home" ref={rootRef} className="relative overflow-hidden" data-trace-node="left" data-trace-index="0">
+    <section id="home" ref={rootRef} className="relative overflow-hidden">
       <BackdropShapes />
       <GhostLogo className="absolute left-1/2 top-1/2 h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2" />
 
